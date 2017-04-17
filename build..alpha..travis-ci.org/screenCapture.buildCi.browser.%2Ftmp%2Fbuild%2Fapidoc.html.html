@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/thejoshwolfe/yauzl"
-
-    >yauzl (v2.7.0)</a>
+    <a href="https://github.com/thejoshwolfe/yauzl">yauzl (v2.7.0)</a>
 </h1>
 <h4>yet another unzip library for node</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.yauzl">module yauzl</a><ol>
 
@@ -678,7 +671,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype._readStreamForRange = function (start, end) {
-  throw new Error(&#x22;not implemented&#x22;);
+  throw new Error("not implemented");
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -721,9 +714,9 @@
 
   var destroyed = false;
   var refUnrefFilter = new RefUnrefFilter(this);
-  stream.on(&#x22;error&#x22;, function(err) {
+  stream.on("error", function(err) {
     setImmediate(function() {
-      if (!destroyed) refUnrefFilter.emit(&#x22;error&#x22;, err);
+      if (!destroyed) refUnrefFilter.emit("error", err);
     });
   });
   refUnrefFilter.destroy = function() {
@@ -733,9 +726,9 @@
   };
 
   var byteCounter = new AssertByteCountStream(end - start);
-  refUnrefFilter.on(&#x22;error&#x22;, function(err) {
+  refUnrefFilter.on("error", function(err) {
     setImmediate(function() {
-      if (!destroyed) byteCounter.emit(&#x22;error&#x22;, err);
+      if (!destroyed) byteCounter.emit("error", err);
     });
   });
   byteCounter.destroy = function() {
@@ -767,8 +760,8 @@
     written += chunk.length;
     cb();
   };
-  writeStream.on(&#x22;finish&#x22;, callback);
-  readStream.on(&#x22;error&#x22;, function(error) {
+  writeStream.on("finish", callback);
+  readStream.on("error", function(error) {
     callback(error);
   });
   readStream.pipe(writeStream);
@@ -804,14 +797,14 @@
   var self = this;
   self.refCount -= 1;
 
-  if (self.refCount &#x3e; 0) return;
-  if (self.refCount &#x3c; 0) throw new Error(&#x22;invalid unref&#x22;);
+  if (self.refCount &gt; 0) return;
+  if (self.refCount &lt; 0) throw new Error("invalid unref");
 
   self.close(onCloseDone);
 
   function onCloseDone(err) {
-    if (err) return self.emit(&#x27;error&#x27;, err);
-    self.emit(&#x27;close&#x27;);
+    if (err) return self.emit('error', err);
+    self.emit('close');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -831,12 +824,12 @@
   EventEmitter.call(self);
   self.reader = reader;
   // forward close events
-  self.reader.on(&#x22;error&#x22;, function(err) {
+  self.reader.on("error", function(err) {
     // error closing the fd
     emitError(self, err);
   });
-  self.reader.once(&#x22;close&#x22;, function() {
-    self.emit(&#x22;close&#x22;);
+  self.reader.once("close", function() {
+    self.emit("close");
   });
   self.readEntryCursor = centralDirectoryOffset;
   self.fileSize = fileSize;
@@ -882,8 +875,8 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">ZipFile.prototype.openReadStream = function (entry, callback) {
   var self = this;
-  if (!self.isOpen) return callback(new Error(&#x22;closed&#x22;));
-  // make sure we don&#x27;t lose the fd before we open the actual read stream
+  if (!self.isOpen) return callback(new Error("closed"));
+  // make sure we don't lose the fd before we open the actual read stream
   self.reader.ref();
   var buffer = new Buffer(30);
   readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader, function(err) {
@@ -892,7 +885,7 @@
       // 0 - Local file header signature = 0x04034b50
       var signature = buffer.readUInt32LE(0);
       if (signature !== 0x04034b50) {
-        return callback(new Error(&#x22;invalid local file header signature: 0x&#x22; + signature.toString(16)));
+        return callback(new Error("invalid local file header signature: 0x" + signature.toString(16)));
       }
       // all this should be redundant
       // 4 - Version needed to extract (minimum)
@@ -918,17 +911,17 @@
         // 8 - The file is Deflated
         compressed = true;
       } else {
-        return callback(new Error(&#x22;unsupported compression method: &#x22; + entry.compressionMethod));
+        return callback(new Error("unsupported compression method: " + entry.compressionMethod));
       }
       var fileDataStart = localFileHeaderEnd;
       var fileDataEnd = fileDataStart + entry.compressedSize;
       if (entry.compressedSize !== 0) {
         // bounds check now, because the read streams will probably not complain loud enough.
-        // since we&#x27;re dealing with an unsigned offset plus an unsigned size,
+        // since we're dealing with an unsigned offset plus an unsigned size,
         // we only have 1 thing to check for.
-        if (fileDataEnd &#x3e; self.fileSize) {
-          return callback(new Error(&#x22;file data overflows file bounds: &#x22; +
-              fileDataStart + &#x22; + &#x22; + entry.compressedSize + &#x22; &#x3e; &#x22; + self.fileSize));
+        if (fileDataEnd &gt; self.fileSize) {
+          return callback(new Error("file data overflows file bounds: " +
+              fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
         }
       }
       var readStream = self.reader.createReadStream({start: fileDataStart, end: fileDataEnd});
@@ -936,18 +929,18 @@
       if (compressed) {
         var destroyed = false;
         var inflateFilter = zlib.createInflateRaw();
-        readStream.on(&#x22;error&#x22;, function(err) {
+        readStream.on("error", function(err) {
           // setImmediate here because errors can be emitted during the first call to pipe()
           setImmediate(function() {
-            if (!destroyed) inflateFilter.emit(&#x22;error&#x22;, err);
+            if (!destroyed) inflateFilter.emit("error", err);
           });
         });
 
         var checkerStream = new AssertByteCountStream(entry.uncompressedSize);
-        inflateFilter.on(&#x22;error&#x22;, function(err) {
+        inflateFilter.on("error", function(err) {
           // forward zlib errors to the client-visible stream
           setImmediate(function() {
-            if (!destroyed) checkerStream.emit(&#x22;error&#x22;, err);
+            if (!destroyed) checkerStream.emit("error", err);
           });
         });
         checkerStream.destroy = function() {
@@ -984,7 +977,7 @@
     setImmediate(function() {
       if (self.autoClose) self.close();
       if (self.emittedError) return;
-      self.emit(&#x22;end&#x22;);
+      self.emit("end");
     });
     return;
   }
@@ -996,8 +989,8 @@
     var entry = new Entry();
     // 0 - Central directory file header signature
     var signature = buffer.readUInt32LE(0);
-    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error(&#x22;invalid central directory file header signature:
-0x&#x22; + signature.toString(16)));
+    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error("invalid central directory file header signature:
+0x" + signature.toString(16)));
     // 4 - Version made by
     entry.versionMadeBy = buffer.readUInt16LE(4);
     // 6 - Version needed to extract (minimum)
@@ -1037,7 +1030,7 @@
       if (err) return emitErrorAndAutoClose(self, err);
       if (self.emittedError) return;
       // 46 - File name
-      var isUtf8 = (entry.generalPurposeBitFlag &#x26; 0x800) !== 0;
+      var isUtf8 = (entry.generalPurposeBitFlag &amp; 0x800) !== 0;
       entry.fileName = self.decodeStrings ? decodeBuffer(buffer, 0, entry.fileNameLength, isUtf8)
                                           : buffer.slice(0, entry.fileNameLength);
 
@@ -1046,13 +1039,13 @@
       var extraFieldBuffer = buffer.slice(entry.fileNameLength, fileCommentStart);
       entry.extraFields = [];
       var i = 0;
-      while (i &#x3c; extraFieldBuffer.length - 3) {
+      while (i &lt; extraFieldBuffer.length - 3) {
         var headerId = extraFieldBuffer.readUInt16LE(i + 0);
         var dataSize = extraFieldBuffer.readUInt16LE(i + 2);
         var dataStart = i + 4;
         var dataEnd = dataStart + dataSize;
-        if (dataEnd &#x3e; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error(&#x22;extra field length exceeds extra field
- buffer size&#x22;));
+        if (dataEnd &gt; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error("extra field length exceeds extra field
+ buffer size"));
         var dataBuffer = new Buffer(dataSize);
         extraFieldBuffer.copy(dataBuffer, 0, dataStart, dataEnd);
         entry.extraFields.push({
@@ -1083,14 +1076,14 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function dosDateTimeToDate(date, time) {
-  var day = date &#x26; 0x1f; // 1-31
-  var month = (date &#x3e;&#x3e; 5 &#x26; 0xf) - 1; // 1-12, 0-11
-  var year = (date &#x3e;&#x3e; 9 &#x26; 0x7f) + 1980; // 0-128, 1980-2108
+  var day = date &amp; 0x1f; // 1-31
+  var month = (date &gt;&gt; 5 &amp; 0xf) - 1; // 1-12, 0-11
+  var year = (date &gt;&gt; 9 &amp; 0x7f) + 1980; // 0-128, 1980-2108
 
   var millisecond = 0;
-  var second = (time &#x26; 0x1f) * 2; // 0-29, 0-58 (even numbers)
-  var minute = time &#x3e;&#x3e; 5 &#x26; 0x3f; // 0-59
-  var hour = time &#x3e;&#x3e; 11 &#x26; 0x1f; // 0-23
+  var second = (time &amp; 0x1f) * 2; // 0-29, 0-58 (even numbers)
+  var minute = time &gt;&gt; 5 &amp; 0x3f; // 0-59
+  var hour = time &gt;&gt; 11 &amp; 0x1f; // 0-23
 
   return new Date(year, month, day, hour, minute, second, millisecond);
 }</pre></li>
@@ -1107,7 +1100,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fromBuffer(buffer, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -1132,7 +1125,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fromFd(fd, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -1160,7 +1153,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fromRandomAccessReader(reader, totalSize, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -1170,10 +1163,10 @@
   if (options.decodeStrings == null) options.decodeStrings = true;
   var decodeStrings = !!options.decodeStrings;
   if (callback == null) callback = defaultCallback;
-  if (typeof totalSize !== &#x22;number&#x22;) throw new Error(&#x22;expected totalSize parameter to be a number&#x22;);
-  if (totalSize &#x3e; Number.MAX_SAFE_INTEGER) {
-    throw new Error(&#x22;zip file too large. only file sizes up to 2^52 are supported due to JavaScript&#x27;s Number type being an IEEE
-754 double.&#x22;);
+  if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
+  if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
+    throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being an IEEE
+754 double.");
   }
 
   // the matching unref() call is in zipfile.close()
@@ -1182,9 +1175,9 @@
   // eocdr means End of Central Directory Record.
   // search backwards for the eocdr signature.
   // the last field of the eocdr is a variable-length comment.
-  // the comment size is encoded in a 2-byte field in the eocdr, which we can&#x27;t find without trudging backwards through the comment
+  // the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment
  to find it.
-  // as a consequence of this design decision, it&#x27;s possible to have ambiguous zip file metadata if a coherent eocdr was in the
+  // as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the
 comment.
   // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
  in the comment.
@@ -1195,7 +1188,7 @@ comment.
   var bufferReadStart = totalSize - buffer.length;
   readAndAssertNoEof(reader, buffer, 0, bufferSize, bufferReadStart, function(err) {
     if (err) return callback(err);
-    for (var i = bufferSize - eocdrWithoutCommentSize; i &#x3e;= 0; i -= 1) {
+    for (var i = bufferSize - eocdrWithoutCommentSize; i &gt;= 0; i -= 1) {
       if (buffer.readUInt32LE(i) !== 0x06054b50) continue;
       // found eocdr
       var eocdrBuffer = buffer.slice(i);
@@ -1204,7 +1197,7 @@ comment.
       // 4 - Number of this disk
       var diskNumber = eocdrBuffer.readUInt16LE(4);
       if (diskNumber !== 0) {
-        return callback(new Error(&#x22;multi-disk zip files are not supported: found disk number: &#x22; + diskNumber));
+        return callback(new Error("multi-disk zip files are not supported: found disk number: " + diskNumber));
       }
       // 6 - Disk where central directory starts
       // 8 - Number of central directory records on this disk
@@ -1217,7 +1210,7 @@ comment.
       var commentLength = eocdrBuffer.readUInt16LE(20);
       var expectedCommentLength = eocdrBuffer.length - eocdrWithoutCommentSize;
       if (commentLength !== expectedCommentLength) {
-        return callback(new Error(&#x22;invalid comment length. expected: &#x22; + expectedCommentLength + &#x22;. found: &#x22; + commentLength));
+        return callback(new Error("invalid comment length. expected: " + expectedCommentLength + ". found: " + commentLength));
       }
       // 22 - Comment
       // the encoding is always cp437.
@@ -1239,7 +1232,7 @@ comment.
 
         // 0 - zip64 end of central dir locator signature = 0x07064b50
         if (zip64EocdlBuffer.readUInt32LE(0) !== 0x07064b50) {
-          return callback(new Error(&#x22;invalid zip64 end of central ...</pre></li>
+          return callback(new Error("invalid zip64 end of central ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1253,7 +1246,7 @@ comment.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function open(path, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -1262,7 +1255,7 @@ comment.
   if (options.lazyEntries == null) options.lazyEntries = false;
   if (options.decodeStrings == null) options.decodeStrings = true;
   if (callback == null) callback = defaultCallback;
-  fs.open(path, &#x22;r&#x22;, function(err, fd) {
+  fs.open(path, "r", function(err, fd) {
     if (err) return callback(err);
     fromFd(fd, options, function(err, zipfile) {
       if (err) fs.close(fd, defaultCallback);
@@ -1273,17 +1266,17 @@ comment.
     <li>example usage<pre class="apidocCodePre">...
 
 ```js
-var yauzl = require(&#x22;yauzl&#x22;);
-var fs = require(&#x22;fs&#x22;);
-var path = require(&#x22;path&#x22;);
-var mkdirp = require(&#x22;mkdirp&#x22;); // or similar
+var yauzl = require("yauzl");
+var fs = require("fs");
+var path = require("path");
+var mkdirp = require("mkdirp"); // or similar
 
-yauzl.<span class="apidocCodeKeywordSpan">open</span>(&#x22;path/to/file.zip&#x22;, {lazyEntries: true}, function(err, zipfile) {
+yauzl.<span class="apidocCodeKeywordSpan">open</span>("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
 if (err) throw err;
 zipfile.readEntry();
-zipfile.on(&#x22;entry&#x22;, function(entry) {
+zipfile.on("entry", function(entry) {
   if (/\/$/.test(entry.fileName)) {
-    // directory file names end with &#x27;/&#x27;
+    // directory file names end with '/'
     mkdirp(entry.fileName, function(err) {
       if (err) throw err;
 ...</pre></li>
@@ -1299,14 +1292,14 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function validateFileName(fileName) {
-  if (fileName.indexOf(&#x22;\\&#x22;) !== -1) {
-    return &#x22;invalid characters in fileName: &#x22; + fileName;
+  if (fileName.indexOf("\\") !== -1) {
+    return "invalid characters in fileName: " + fileName;
   }
   if (/^[a-zA-Z]:/.test(fileName) || /^\//.test(fileName)) {
-    return &#x22;absolute path: &#x22; + fileName;
+    return "absolute path: " + fileName;
   }
-  if (fileName.split(&#x22;/&#x22;).indexOf(&#x22;..&#x22;) !== -1) {
-    return &#x22;invalid relative path: &#x22; + fileName;
+  if (fileName.split("/").indexOf("..") !== -1) {
+    return "invalid relative path: " + fileName;
   }
   // all good
   return null;
@@ -1315,7 +1308,7 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
 ### validateFileName(fileName)
 
 Returns `null` or a `String` error message depending on the validity of `fileName`.
-If `fileName` starts with `&#x22;/&#x22;` or `/[A-Za-z]:\//` or if it contains `&#x22;..&#x22;` path segments or `&#x22;\\&#x22;`,
+If `fileName` starts with `"/"` or `/[A-Za-z]:\//` or if it contains `".."` path segments or `"\\"`,
 this function returns an error message appropriate for use like this:
 
 ```js
@@ -1324,7 +1317,7 @@ if (errorMessage != null) throw new Error(errorMessage);
 ```
 
 This function is automatically run for each entry, as long as `decodeStrings` is `true`.
-See `open()` and `Event: &#x22;entry&#x22;` for more information.
+See `open()` and `Event: "entry"` for more information.
 
 ### Class: ZipFile
 ...</pre></li>
@@ -1446,7 +1439,7 @@ See `open()` and `Event: &#x22;entry&#x22;` for more information.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_readStreamForRange = function (start, end) {
-  throw new Error(&#x22;not implemented&#x22;);
+  throw new Error("not implemented");
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 Such heuristics are outside the scope of this library,
@@ -1486,7 +1479,7 @@ and closes the fd after all streams created by `openReadStream()` have emitted t
 `autoClose` is effectively equivalent to:
 
 ```js
-zipfile.once(&#x22;end&#x22;, function() {
+zipfile.once("end", function() {
   zipfile.<span class="apidocCodeKeywordSpan">close</span>();
 });
 ```
@@ -1521,9 +1514,9 @@ This is not recommended, as it can lead to out of control memory usage for zip f
 
   var destroyed = false;
   var refUnrefFilter = new RefUnrefFilter(this);
-  stream.on(&#x22;error&#x22;, function(err) {
+  stream.on("error", function(err) {
     setImmediate(function() {
-      if (!destroyed) refUnrefFilter.emit(&#x22;error&#x22;, err);
+      if (!destroyed) refUnrefFilter.emit("error", err);
     });
   });
   refUnrefFilter.destroy = function() {
@@ -1533,9 +1526,9 @@ This is not recommended, as it can lead to out of control memory usage for zip f
   };
 
   var byteCounter = new AssertByteCountStream(end - start);
-  refUnrefFilter.on(&#x22;error&#x22;, function(err) {
+  refUnrefFilter.on("error", function(err) {
     setImmediate(function() {
-      if (!destroyed) byteCounter.emit(&#x22;error&#x22;, err);
+      if (!destroyed) byteCounter.emit("error", err);
     });
   });
   byteCounter.destroy = function() {
@@ -1547,11 +1540,11 @@ This is not recommended, as it can lead to out of control memory usage for zip f
   return stream.pipe(refUnrefFilter).pipe(byteCounter);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  // since we&#x27;re dealing with an unsigned offset plus an unsigned size,
+  // since we're dealing with an unsigned offset plus an unsigned size,
   // we only have 1 thing to check for.
-  if (fileDataEnd &#x3e; self.fileSize) {
-    return callback(new Error(&#x22;file data overflows file bounds: &#x22; +
-        fileDataStart + &#x22; + &#x22; + entry.compressedSize + &#x22; &#x3e; &#x22; + self.fileSize));
+  if (fileDataEnd &gt; self.fileSize) {
+    return callback(new Error("file data overflows file bounds: " +
+        fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
   }
 }
 var readStream = self.reader.<span class="apidocCodeKeywordSpan">createReadStream</span>({start: fileDataStart, end: fileDataEnd
@@ -1560,7 +1553,7 @@ var endpointStream = readStream;
 if (compressed) {
   var destroyed = false;
   var inflateFilter = zlib.createInflateRaw();
-  readStream.on(&#x22;error&#x22;, function(err) {
+  readStream.on("error", function(err) {
     // setImmediate here because errors can be emitted during the first call to pipe()
     setImmediate(function() {
 ...</pre></li>
@@ -1584,8 +1577,8 @@ if (compressed) {
     written += chunk.length;
     cb();
   };
-  writeStream.on(&#x22;finish&#x22;, callback);
-  readStream.on(&#x22;error&#x22;, function(error) {
+  writeStream.on("finish", callback);
+  readStream.on("error", function(error) {
     callback(error);
   });
   readStream.pipe(writeStream);
@@ -1623,10 +1616,10 @@ This method should behave like `fs.read()`.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (callback == null) callback = defaultCallback;
-if (typeof totalSize !== &#x22;number&#x22;) throw new Error(&#x22;expected totalSize parameter to be a number&#x22;);
-if (totalSize &#x3e; Number.MAX_SAFE_INTEGER) {
-  throw new Error(&#x22;zip file too large. only file sizes up to 2^52 are supported due to JavaScript&#x27;s Number type being
-an IEEE 754 double.&#x22;);
+if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
+if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
+  throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being
+an IEEE 754 double.");
 }
 
 // the matching unref() call is in zipfile.close()
@@ -1635,9 +1628,9 @@ reader.<span class="apidocCodeKeywordSpan">ref</span>();
 // eocdr means End of Central Directory Record.
 // search backwards for the eocdr signature.
 // the last field of the eocdr is a variable-length comment.
-// the comment size is encoded in a 2-byte field in the eocdr, which we can&#x27;t find without trudging backwards through the comment
+// the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment
  to find it.
-// as a consequence of this design decision, it&#x27;s possible to have ambiguous zip file metadata if a coherent eocdr was in the
+// as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the
  comment.
 // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
  in the comment.
@@ -1657,14 +1650,14 @@ reader.<span class="apidocCodeKeywordSpan">ref</span>();
   var self = this;
   self.refCount -= 1;
 
-  if (self.refCount &#x3e; 0) return;
-  if (self.refCount &#x3c; 0) throw new Error(&#x22;invalid unref&#x22;);
+  if (self.refCount &gt; 0) return;
+  if (self.refCount &lt; 0) throw new Error("invalid unref");
 
   self.close(onCloseDone);
 
   function onCloseDone(err) {
-    if (err) return self.emit(&#x27;error&#x27;, err);
-    self.emit(&#x27;close&#x27;);
+    if (err) return self.emit('error', err);
+    self.emit('close');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -1701,7 +1694,7 @@ function emitError(self, err) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">_readStreamForRange = function (start, end) {
-  throw new Error(&#x22;not implemented&#x22;);
+  throw new Error("not implemented");
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 Such heuristics are outside the scope of this library,
@@ -1746,7 +1739,7 @@ and closes the fd after all streams created by `openReadStream()` have emitted t
 `autoClose` is effectively equivalent to:
 
 ```js
-zipfile.once(&#x22;end&#x22;, function() {
+zipfile.once("end", function() {
   zipfile.<span class="apidocCodeKeywordSpan">close</span>();
 });
 ```
@@ -1786,9 +1779,9 @@ This is not recommended, as it can lead to out of control memory usage for zip f
 
   var destroyed = false;
   var refUnrefFilter = new RefUnrefFilter(this);
-  stream.on(&#x22;error&#x22;, function(err) {
+  stream.on("error", function(err) {
     setImmediate(function() {
-      if (!destroyed) refUnrefFilter.emit(&#x22;error&#x22;, err);
+      if (!destroyed) refUnrefFilter.emit("error", err);
     });
   });
   refUnrefFilter.destroy = function() {
@@ -1798,9 +1791,9 @@ This is not recommended, as it can lead to out of control memory usage for zip f
   };
 
   var byteCounter = new AssertByteCountStream(end - start);
-  refUnrefFilter.on(&#x22;error&#x22;, function(err) {
+  refUnrefFilter.on("error", function(err) {
     setImmediate(function() {
-      if (!destroyed) byteCounter.emit(&#x22;error&#x22;, err);
+      if (!destroyed) byteCounter.emit("error", err);
     });
   });
   byteCounter.destroy = function() {
@@ -1812,11 +1805,11 @@ This is not recommended, as it can lead to out of control memory usage for zip f
   return stream.pipe(refUnrefFilter).pipe(byteCounter);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  // since we&#x27;re dealing with an unsigned offset plus an unsigned size,
+  // since we're dealing with an unsigned offset plus an unsigned size,
   // we only have 1 thing to check for.
-  if (fileDataEnd &#x3e; self.fileSize) {
-    return callback(new Error(&#x22;file data overflows file bounds: &#x22; +
-        fileDataStart + &#x22; + &#x22; + entry.compressedSize + &#x22; &#x3e; &#x22; + self.fileSize));
+  if (fileDataEnd &gt; self.fileSize) {
+    return callback(new Error("file data overflows file bounds: " +
+        fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
   }
 }
 var readStream = self.reader.<span class="apidocCodeKeywordSpan">createReadStream</span>({start: fileDataStart, end: fileDataEnd
@@ -1825,7 +1818,7 @@ var endpointStream = readStream;
 if (compressed) {
   var destroyed = false;
   var inflateFilter = zlib.createInflateRaw();
-  readStream.on(&#x22;error&#x22;, function(err) {
+  readStream.on("error", function(err) {
     // setImmediate here because errors can be emitted during the first call to pipe()
     setImmediate(function() {
 ...</pre></li>
@@ -1854,8 +1847,8 @@ if (compressed) {
     written += chunk.length;
     cb();
   };
-  writeStream.on(&#x22;finish&#x22;, callback);
-  readStream.on(&#x22;error&#x22;, function(error) {
+  writeStream.on("finish", callback);
+  readStream.on("error", function(error) {
     callback(error);
   });
   readStream.pipe(writeStream);
@@ -1898,10 +1891,10 @@ This method should behave like `fs.read()`.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (callback == null) callback = defaultCallback;
-if (typeof totalSize !== &#x22;number&#x22;) throw new Error(&#x22;expected totalSize parameter to be a number&#x22;);
-if (totalSize &#x3e; Number.MAX_SAFE_INTEGER) {
-  throw new Error(&#x22;zip file too large. only file sizes up to 2^52 are supported due to JavaScript&#x27;s Number type being
-an IEEE 754 double.&#x22;);
+if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
+if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
+  throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being
+an IEEE 754 double.");
 }
 
 // the matching unref() call is in zipfile.close()
@@ -1910,9 +1903,9 @@ reader.<span class="apidocCodeKeywordSpan">ref</span>();
 // eocdr means End of Central Directory Record.
 // search backwards for the eocdr signature.
 // the last field of the eocdr is a variable-length comment.
-// the comment size is encoded in a 2-byte field in the eocdr, which we can&#x27;t find without trudging backwards through the comment
+// the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment
  to find it.
-// as a consequence of this design decision, it&#x27;s possible to have ambiguous zip file metadata if a coherent eocdr was in the
+// as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the
  comment.
 // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
  in the comment.
@@ -1937,14 +1930,14 @@ reader.<span class="apidocCodeKeywordSpan">ref</span>();
   var self = this;
   self.refCount -= 1;
 
-  if (self.refCount &#x3e; 0) return;
-  if (self.refCount &#x3c; 0) throw new Error(&#x22;invalid unref&#x22;);
+  if (self.refCount &gt; 0) return;
+  if (self.refCount &lt; 0) throw new Error("invalid unref");
 
   self.close(onCloseDone);
 
   function onCloseDone(err) {
-    if (err) return self.emit(&#x27;error&#x27;, err);
-    self.emit(&#x27;close&#x27;);
+    if (err) return self.emit('error', err);
+    self.emit('close');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -1985,12 +1978,12 @@ function emitError(self, err) {
   EventEmitter.call(self);
   self.reader = reader;
   // forward close events
-  self.reader.on(&#x22;error&#x22;, function(err) {
+  self.reader.on("error", function(err) {
     // error closing the fd
     emitError(self, err);
   });
-  self.reader.once(&#x22;close&#x22;, function() {
-    self.emit(&#x22;close&#x22;);
+  self.reader.once("close", function() {
+    self.emit("close");
   });
   self.readEntryCursor = centralDirectoryOffset;
   self.fileSize = fileSize;
@@ -2049,7 +2042,7 @@ function emitError(self, err) {
 `autoClose` is effectively equivalent to:
 
 ```js
-zipfile.once(&#x22;end&#x22;, function() {
+zipfile.once("end", function() {
   zipfile.<span class="apidocCodeKeywordSpan">close</span>();
 });
 ```
@@ -2072,8 +2065,8 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     <ul>
     <li>description and source-code<pre class="apidocCodePre">openReadStream = function (entry, callback) {
   var self = this;
-  if (!self.isOpen) return callback(new Error(&#x22;closed&#x22;));
-  // make sure we don&#x27;t lose the fd before we open the actual read stream
+  if (!self.isOpen) return callback(new Error("closed"));
+  // make sure we don't lose the fd before we open the actual read stream
   self.reader.ref();
   var buffer = new Buffer(30);
   readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader, function(err) {
@@ -2082,7 +2075,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       // 0 - Local file header signature = 0x04034b50
       var signature = buffer.readUInt32LE(0);
       if (signature !== 0x04034b50) {
-        return callback(new Error(&#x22;invalid local file header signature: 0x&#x22; + signature.toString(16)));
+        return callback(new Error("invalid local file header signature: 0x" + signature.toString(16)));
       }
       // all this should be redundant
       // 4 - Version needed to extract (minimum)
@@ -2108,17 +2101,17 @@ This is not recommended, as it can lead to out of control memory usage for zip f
         // 8 - The file is Deflated
         compressed = true;
       } else {
-        return callback(new Error(&#x22;unsupported compression method: &#x22; + entry.compressionMethod));
+        return callback(new Error("unsupported compression method: " + entry.compressionMethod));
       }
       var fileDataStart = localFileHeaderEnd;
       var fileDataEnd = fileDataStart + entry.compressedSize;
       if (entry.compressedSize !== 0) {
         // bounds check now, because the read streams will probably not complain loud enough.
-        // since we&#x27;re dealing with an unsigned offset plus an unsigned size,
+        // since we're dealing with an unsigned offset plus an unsigned size,
         // we only have 1 thing to check for.
-        if (fileDataEnd &#x3e; self.fileSize) {
-          return callback(new Error(&#x22;file data overflows file bounds: &#x22; +
-              fileDataStart + &#x22; + &#x22; + entry.compressedSize + &#x22; &#x3e; &#x22; + self.fileSize));
+        if (fileDataEnd &gt; self.fileSize) {
+          return callback(new Error("file data overflows file bounds: " +
+              fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
         }
       }
       var readStream = self.reader.createReadStream({start: fileDataStart, end: fileDataEnd});
@@ -2126,18 +2119,18 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       if (compressed) {
         var destroyed = false;
         var inflateFilter = zlib.createInflateRaw();
-        readStream.on(&#x22;error&#x22;, function(err) {
+        readStream.on("error", function(err) {
           // setImmediate here because errors can be emitted during the first call to pipe()
           setImmediate(function() {
-            if (!destroyed) inflateFilter.emit(&#x22;error&#x22;, err);
+            if (!destroyed) inflateFilter.emit("error", err);
           });
         });
 
         var checkerStream = new AssertByteCountStream(entry.uncompressedSize);
-        inflateFilter.on(&#x22;error&#x22;, function(err) {
+        inflateFilter.on("error", function(err) {
           // forward zlib errors to the client-visible stream
           setImmediate(function() {
-            if (!destroyed) checkerStream.emit(&#x22;error&#x22;, err);
+            if (!destroyed) checkerStream.emit("error", err);
           });
         });
         checkerStream.destroy = function() {
@@ -2156,7 +2149,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  // directory file names end with &#x27;/&#x27;
+  // directory file names end with '/'
   mkdirp(entry.fileName, function(err) {
     if (err) throw err;
     zipfile.readEntry();
@@ -2169,7 +2162,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     mkdirp(path.dirname(entry.fileName), function(err) {
       if (err) throw err;
       readStream.pipe(fs.createWriteStream(entry.fileName));
-      readStream.on(&#x22;end&#x22;, function() {
+      readStream.on("end", function() {
         zipfile.readEntry();
 ...</pre></li>
     </ul>
@@ -2190,7 +2183,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     setImmediate(function() {
       if (self.autoClose) self.close();
       if (self.emittedError) return;
-      self.emit(&#x22;end&#x22;);
+      self.emit("end");
     });
     return;
   }
@@ -2202,8 +2195,8 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     var entry = new Entry();
     // 0 - Central directory file header signature
     var signature = buffer.readUInt32LE(0);
-    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error(&#x22;invalid central directory file header signature:
-0x&#x22; + signature.toString(16)));
+    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error("invalid central directory file header signature:
+0x" + signature.toString(16)));
     // 4 - Version made by
     entry.versionMadeBy = buffer.readUInt16LE(4);
     // 6 - Version needed to extract (minimum)
@@ -2243,7 +2236,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       if (err) return emitErrorAndAutoClose(self, err);
       if (self.emittedError) return;
       // 46 - File name
-      var isUtf8 = (entry.generalPurposeBitFlag &#x26; 0x800) !== 0;
+      var isUtf8 = (entry.generalPurposeBitFlag &amp; 0x800) !== 0;
       entry.fileName = self.decodeStrings ? decodeBuffer(buffer, 0, entry.fileNameLength, isUtf8)
                                           : buffer.slice(0, entry.fileNameLength);
 
@@ -2252,13 +2245,13 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       var extraFieldBuffer = buffer.slice(entry.fileNameLength, fileCommentStart);
       entry.extraFields = [];
       var i = 0;
-      while (i &#x3c; extraFieldBuffer.length - 3) {
+      while (i &lt; extraFieldBuffer.length - 3) {
         var headerId = extraFieldBuffer.readUInt16LE(i + 0);
         var dataSize = extraFieldBuffer.readUInt16LE(i + 2);
         var dataStart = i + 4;
         var dataEnd = dataStart + dataSize;
-        if (dataEnd &#x3e; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error(&#x22;extra field length exceeds extra field
- buffer size&#x22;));
+        if (dataEnd &gt; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error("extra field length exceeds extra field
+ buffer size"));
         var dataBuffer = new Buffer(dataSize);
         extraFieldBuffer.copy(dataBuffer, 0, dataStart, dataEnd);
         entry.extraFields.push({
@@ -2277,17 +2270,17 @@ This is not recommended, as it can lead to out of control memory usage for zip f
 
       self.readEntryCursor += b ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var yauzl = require(&#x22;yauzl&#x22;);
-var fs = require(&#x22;fs&#x22;);
-var path = require(&#x22;path&#x22;);
-var mkdirp = require(&#x22;mkdirp&#x22;); // or similar
+var yauzl = require("yauzl");
+var fs = require("fs");
+var path = require("path");
+var mkdirp = require("mkdirp"); // or similar
 
-yauzl.open(&#x22;path/to/file.zip&#x22;, {lazyEntries: true}, function(err, zipfile) {
+yauzl.open("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
 if (err) throw err;
 zipfile.<span class="apidocCodeKeywordSpan">readEntry</span>();
-zipfile.on(&#x22;entry&#x22;, function(entry) {
+zipfile.on("entry", function(entry) {
   if (/\/$/.test(entry.fileName)) {
-    // directory file names end with &#x27;/&#x27;
+    // directory file names end with '/'
     mkdirp(entry.fileName, function(err) {
       if (err) throw err;
       zipfile.readEntry();
@@ -2321,7 +2314,7 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
 `autoClose` is effectively equivalent to:
 
 ```js
-zipfile.once(&#x22;end&#x22;, function() {
+zipfile.once("end", function() {
   zipfile.<span class="apidocCodeKeywordSpan">close</span>();
 });
 ```
@@ -2349,8 +2342,8 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     <ul>
     <li>description and source-code<pre class="apidocCodePre">openReadStream = function (entry, callback) {
   var self = this;
-  if (!self.isOpen) return callback(new Error(&#x22;closed&#x22;));
-  // make sure we don&#x27;t lose the fd before we open the actual read stream
+  if (!self.isOpen) return callback(new Error("closed"));
+  // make sure we don't lose the fd before we open the actual read stream
   self.reader.ref();
   var buffer = new Buffer(30);
   readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader, function(err) {
@@ -2359,7 +2352,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       // 0 - Local file header signature = 0x04034b50
       var signature = buffer.readUInt32LE(0);
       if (signature !== 0x04034b50) {
-        return callback(new Error(&#x22;invalid local file header signature: 0x&#x22; + signature.toString(16)));
+        return callback(new Error("invalid local file header signature: 0x" + signature.toString(16)));
       }
       // all this should be redundant
       // 4 - Version needed to extract (minimum)
@@ -2385,17 +2378,17 @@ This is not recommended, as it can lead to out of control memory usage for zip f
         // 8 - The file is Deflated
         compressed = true;
       } else {
-        return callback(new Error(&#x22;unsupported compression method: &#x22; + entry.compressionMethod));
+        return callback(new Error("unsupported compression method: " + entry.compressionMethod));
       }
       var fileDataStart = localFileHeaderEnd;
       var fileDataEnd = fileDataStart + entry.compressedSize;
       if (entry.compressedSize !== 0) {
         // bounds check now, because the read streams will probably not complain loud enough.
-        // since we&#x27;re dealing with an unsigned offset plus an unsigned size,
+        // since we're dealing with an unsigned offset plus an unsigned size,
         // we only have 1 thing to check for.
-        if (fileDataEnd &#x3e; self.fileSize) {
-          return callback(new Error(&#x22;file data overflows file bounds: &#x22; +
-              fileDataStart + &#x22; + &#x22; + entry.compressedSize + &#x22; &#x3e; &#x22; + self.fileSize));
+        if (fileDataEnd &gt; self.fileSize) {
+          return callback(new Error("file data overflows file bounds: " +
+              fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
         }
       }
       var readStream = self.reader.createReadStream({start: fileDataStart, end: fileDataEnd});
@@ -2403,18 +2396,18 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       if (compressed) {
         var destroyed = false;
         var inflateFilter = zlib.createInflateRaw();
-        readStream.on(&#x22;error&#x22;, function(err) {
+        readStream.on("error", function(err) {
           // setImmediate here because errors can be emitted during the first call to pipe()
           setImmediate(function() {
-            if (!destroyed) inflateFilter.emit(&#x22;error&#x22;, err);
+            if (!destroyed) inflateFilter.emit("error", err);
           });
         });
 
         var checkerStream = new AssertByteCountStream(entry.uncompressedSize);
-        inflateFilter.on(&#x22;error&#x22;, function(err) {
+        inflateFilter.on("error", function(err) {
           // forward zlib errors to the client-visible stream
           setImmediate(function() {
-            if (!destroyed) checkerStream.emit(&#x22;error&#x22;, err);
+            if (!destroyed) checkerStream.emit("error", err);
           });
         });
         checkerStream.destroy = function() {
@@ -2433,7 +2426,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  // directory file names end with &#x27;/&#x27;
+  // directory file names end with '/'
   mkdirp(entry.fileName, function(err) {
     if (err) throw err;
     zipfile.readEntry();
@@ -2446,7 +2439,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     mkdirp(path.dirname(entry.fileName), function(err) {
       if (err) throw err;
       readStream.pipe(fs.createWriteStream(entry.fileName));
-      readStream.on(&#x22;end&#x22;, function() {
+      readStream.on("end", function() {
         zipfile.readEntry();
 ...</pre></li>
     </ul>
@@ -2472,7 +2465,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     setImmediate(function() {
       if (self.autoClose) self.close();
       if (self.emittedError) return;
-      self.emit(&#x22;end&#x22;);
+      self.emit("end");
     });
     return;
   }
@@ -2484,8 +2477,8 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     var entry = new Entry();
     // 0 - Central directory file header signature
     var signature = buffer.readUInt32LE(0);
-    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error(&#x22;invalid central directory file header signature:
-0x&#x22; + signature.toString(16)));
+    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error("invalid central directory file header signature:
+0x" + signature.toString(16)));
     // 4 - Version made by
     entry.versionMadeBy = buffer.readUInt16LE(4);
     // 6 - Version needed to extract (minimum)
@@ -2525,7 +2518,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       if (err) return emitErrorAndAutoClose(self, err);
       if (self.emittedError) return;
       // 46 - File name
-      var isUtf8 = (entry.generalPurposeBitFlag &#x26; 0x800) !== 0;
+      var isUtf8 = (entry.generalPurposeBitFlag &amp; 0x800) !== 0;
       entry.fileName = self.decodeStrings ? decodeBuffer(buffer, 0, entry.fileNameLength, isUtf8)
                                           : buffer.slice(0, entry.fileNameLength);
 
@@ -2534,13 +2527,13 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       var extraFieldBuffer = buffer.slice(entry.fileNameLength, fileCommentStart);
       entry.extraFields = [];
       var i = 0;
-      while (i &#x3c; extraFieldBuffer.length - 3) {
+      while (i &lt; extraFieldBuffer.length - 3) {
         var headerId = extraFieldBuffer.readUInt16LE(i + 0);
         var dataSize = extraFieldBuffer.readUInt16LE(i + 2);
         var dataStart = i + 4;
         var dataEnd = dataStart + dataSize;
-        if (dataEnd &#x3e; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error(&#x22;extra field length exceeds extra field
- buffer size&#x22;));
+        if (dataEnd &gt; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error("extra field length exceeds extra field
+ buffer size"));
         var dataBuffer = new Buffer(dataSize);
         extraFieldBuffer.copy(dataBuffer, 0, dataStart, dataEnd);
         entry.extraFields.push({
@@ -2559,17 +2552,17 @@ This is not recommended, as it can lead to out of control memory usage for zip f
 
       self.readEntryCursor += b ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var yauzl = require(&#x22;yauzl&#x22;);
-var fs = require(&#x22;fs&#x22;);
-var path = require(&#x22;path&#x22;);
-var mkdirp = require(&#x22;mkdirp&#x22;); // or similar
+var yauzl = require("yauzl");
+var fs = require("fs");
+var path = require("path");
+var mkdirp = require("mkdirp"); // or similar
 
-yauzl.open(&#x22;path/to/file.zip&#x22;, {lazyEntries: true}, function(err, zipfile) {
+yauzl.open("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
 if (err) throw err;
 zipfile.<span class="apidocCodeKeywordSpan">readEntry</span>();
-zipfile.on(&#x22;entry&#x22;, function(entry) {
+zipfile.on("entry", function(entry) {
   if (/\/$/.test(entry.fileName)) {
-    // directory file names end with &#x27;/&#x27;
+    // directory file names end with '/'
     mkdirp(entry.fileName, function(err) {
       if (err) throw err;
       zipfile.readEntry();
@@ -2592,14 +2585,14 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function dosDateTimeToDate(date, time) {
-  var day = date &#x26; 0x1f; // 1-31
-  var month = (date &#x3e;&#x3e; 5 &#x26; 0xf) - 1; // 1-12, 0-11
-  var year = (date &#x3e;&#x3e; 9 &#x26; 0x7f) + 1980; // 0-128, 1980-2108
+  var day = date &amp; 0x1f; // 1-31
+  var month = (date &gt;&gt; 5 &amp; 0xf) - 1; // 1-12, 0-11
+  var year = (date &gt;&gt; 9 &amp; 0x7f) + 1980; // 0-128, 1980-2108
 
   var millisecond = 0;
-  var second = (time &#x26; 0x1f) * 2; // 0-29, 0-58 (even numbers)
-  var minute = time &#x3e;&#x3e; 5 &#x26; 0x3f; // 0-59
-  var hour = time &#x3e;&#x3e; 11 &#x26; 0x1f; // 0-23
+  var second = (time &amp; 0x1f) * 2; // 0-29, 0-58 (even numbers)
+  var minute = time &gt;&gt; 5 &amp; 0x3f; // 0-59
+  var hour = time &gt;&gt; 11 &amp; 0x1f; // 0-23
 
   return new Date(year, month, day, hour, minute, second, millisecond);
 }</pre></li>
@@ -2621,7 +2614,7 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fromBuffer(buffer, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -2651,7 +2644,7 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fromFd(fd, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -2684,7 +2677,7 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fromRandomAccessReader(reader, totalSize, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -2694,10 +2687,10 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
   if (options.decodeStrings == null) options.decodeStrings = true;
   var decodeStrings = !!options.decodeStrings;
   if (callback == null) callback = defaultCallback;
-  if (typeof totalSize !== &#x22;number&#x22;) throw new Error(&#x22;expected totalSize parameter to be a number&#x22;);
-  if (totalSize &#x3e; Number.MAX_SAFE_INTEGER) {
-    throw new Error(&#x22;zip file too large. only file sizes up to 2^52 are supported due to JavaScript&#x27;s Number type being an IEEE
-754 double.&#x22;);
+  if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
+  if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
+    throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being an IEEE
+754 double.");
   }
 
   // the matching unref() call is in zipfile.close()
@@ -2706,9 +2699,9 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
   // eocdr means End of Central Directory Record.
   // search backwards for the eocdr signature.
   // the last field of the eocdr is a variable-length comment.
-  // the comment size is encoded in a 2-byte field in the eocdr, which we can&#x27;t find without trudging backwards through the comment
+  // the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment
  to find it.
-  // as a consequence of this design decision, it&#x27;s possible to have ambiguous zip file metadata if a coherent eocdr was in the
+  // as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the
 comment.
   // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
  in the comment.
@@ -2719,7 +2712,7 @@ comment.
   var bufferReadStart = totalSize - buffer.length;
   readAndAssertNoEof(reader, buffer, 0, bufferSize, bufferReadStart, function(err) {
     if (err) return callback(err);
-    for (var i = bufferSize - eocdrWithoutCommentSize; i &#x3e;= 0; i -= 1) {
+    for (var i = bufferSize - eocdrWithoutCommentSize; i &gt;= 0; i -= 1) {
       if (buffer.readUInt32LE(i) !== 0x06054b50) continue;
       // found eocdr
       var eocdrBuffer = buffer.slice(i);
@@ -2728,7 +2721,7 @@ comment.
       // 4 - Number of this disk
       var diskNumber = eocdrBuffer.readUInt16LE(4);
       if (diskNumber !== 0) {
-        return callback(new Error(&#x22;multi-disk zip files are not supported: found disk number: &#x22; + diskNumber));
+        return callback(new Error("multi-disk zip files are not supported: found disk number: " + diskNumber));
       }
       // 6 - Disk where central directory starts
       // 8 - Number of central directory records on this disk
@@ -2741,7 +2734,7 @@ comment.
       var commentLength = eocdrBuffer.readUInt16LE(20);
       var expectedCommentLength = eocdrBuffer.length - eocdrWithoutCommentSize;
       if (commentLength !== expectedCommentLength) {
-        return callback(new Error(&#x22;invalid comment length. expected: &#x22; + expectedCommentLength + &#x22;. found: &#x22; + commentLength));
+        return callback(new Error("invalid comment length. expected: " + expectedCommentLength + ". found: " + commentLength));
       }
       // 22 - Comment
       // the encoding is always cp437.
@@ -2763,7 +2756,7 @@ comment.
 
         // 0 - zip64 end of central dir locator signature = 0x07064b50
         if (zip64EocdlBuffer.readUInt32LE(0) !== 0x07064b50) {
-          return callback(new Error(&#x22;invalid zip64 end of central ...</pre></li>
+          return callback(new Error("invalid zip64 end of central ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -2782,7 +2775,7 @@ comment.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function open(path, options, callback) {
-  if (typeof options === &#x22;function&#x22;) {
+  if (typeof options === "function") {
     callback = options;
     options = null;
   }
@@ -2791,7 +2784,7 @@ comment.
   if (options.lazyEntries == null) options.lazyEntries = false;
   if (options.decodeStrings == null) options.decodeStrings = true;
   if (callback == null) callback = defaultCallback;
-  fs.open(path, &#x22;r&#x22;, function(err, fd) {
+  fs.open(path, "r", function(err, fd) {
     if (err) return callback(err);
     fromFd(fd, options, function(err, zipfile) {
       if (err) fs.close(fd, defaultCallback);
@@ -2802,17 +2795,17 @@ comment.
     <li>example usage<pre class="apidocCodePre">...
 
 ```js
-var yauzl = require(&#x22;yauzl&#x22;);
-var fs = require(&#x22;fs&#x22;);
-var path = require(&#x22;path&#x22;);
-var mkdirp = require(&#x22;mkdirp&#x22;); // or similar
+var yauzl = require("yauzl");
+var fs = require("fs");
+var path = require("path");
+var mkdirp = require("mkdirp"); // or similar
 
-yauzl.<span class="apidocCodeKeywordSpan">open</span>(&#x22;path/to/file.zip&#x22;, {lazyEntries: true}, function(err, zipfile) {
+yauzl.<span class="apidocCodeKeywordSpan">open</span>("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
 if (err) throw err;
 zipfile.readEntry();
-zipfile.on(&#x22;entry&#x22;, function(entry) {
+zipfile.on("entry", function(entry) {
   if (/\/$/.test(entry.fileName)) {
-    // directory file names end with &#x27;/&#x27;
+    // directory file names end with '/'
     mkdirp(entry.fileName, function(err) {
       if (err) throw err;
 ...</pre></li>
@@ -2833,14 +2826,14 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function validateFileName(fileName) {
-  if (fileName.indexOf(&#x22;\\&#x22;) !== -1) {
-    return &#x22;invalid characters in fileName: &#x22; + fileName;
+  if (fileName.indexOf("\\") !== -1) {
+    return "invalid characters in fileName: " + fileName;
   }
   if (/^[a-zA-Z]:/.test(fileName) || /^\//.test(fileName)) {
-    return &#x22;absolute path: &#x22; + fileName;
+    return "absolute path: " + fileName;
   }
-  if (fileName.split(&#x22;/&#x22;).indexOf(&#x22;..&#x22;) !== -1) {
-    return &#x22;invalid relative path: &#x22; + fileName;
+  if (fileName.split("/").indexOf("..") !== -1) {
+    return "invalid relative path: " + fileName;
   }
   // all good
   return null;
@@ -2849,7 +2842,7 @@ zipfile.on(&#x22;entry&#x22;, function(entry) {
 ### validateFileName(fileName)
 
 Returns `null` or a `String` error message depending on the validity of `fileName`.
-If `fileName` starts with `&#x22;/&#x22;` or `/[A-Za-z]:\//` or if it contains `&#x22;..&#x22;` path segments or `&#x22;\\&#x22;`,
+If `fileName` starts with `"/"` or `/[A-Za-z]:\//` or if it contains `".."` path segments or `"\\"`,
 this function returns an error message appropriate for use like this:
 
 ```js
@@ -2858,7 +2851,7 @@ if (errorMessage != null) throw new Error(errorMessage);
 ```
 
 This function is automatically run for each entry, as long as `decodeStrings` is `true`.
-See `open()` and `Event: &#x22;entry&#x22;` for more information.
+See `open()` and `Event: "entry"` for more information.
 
 ### Class: ZipFile
 ...</pre></li>
@@ -2873,3 +2866,4 @@ See `open()` and `Event: &#x22;entry&#x22;` for more information.
     ]
 </div>
 </div>
+</body></html>
