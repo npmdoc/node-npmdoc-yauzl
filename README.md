@@ -1,4 +1,7 @@
-# api documentation for  [yauzl (v2.7.0)](https://github.com/thejoshwolfe/yauzl)  [![npm package](https://img.shields.io/npm/v/npmdoc-yauzl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-yauzl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-yauzl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-yauzl)
+# npmdoc-yauzl
+
+#### api documentation for  [yauzl (v2.8.0)](https://github.com/thejoshwolfe/yauzl)  [![npm package](https://img.shields.io/npm/v/npmdoc-yauzl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-yauzl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-yauzl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-yauzl)
+
 #### yet another unzip library for node
 
 [![NPM](https://nodei.co/npm/yauzl.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/yauzl)
@@ -36,13 +39,13 @@
     },
     "directories": {},
     "dist": {
-        "shasum": "e21d847868b496fc29eaec23ee87fdd33e9b2bce",
-        "tarball": "https://registry.npmjs.org/yauzl/-/yauzl-2.7.0.tgz"
+        "shasum": "79450aff22b2a9c5a41ef54e02db907ccfbf9ee2",
+        "tarball": "https://registry.npmjs.org/yauzl/-/yauzl-2.8.0.tgz"
     },
     "files": [
         "index.js"
     ],
-    "gitHead": "1f5cb3dc6f4e9d4df06e96c665af52e576616cc3",
+    "gitHead": "1107f1a42f39ff73c2f2b95c2824d1eba3a2955e",
     "homepage": "https://github.com/thejoshwolfe/yauzl",
     "keywords": [
         "unzip",
@@ -72,7 +75,8 @@
         "test-cov": "istanbul cover test/test.js",
         "test-travis": "istanbul cover --report lcovonly test/test.js"
     },
-    "version": "2.7.0"
+    "version": "2.8.0",
+    "bin": {}
 }
 ```
 
