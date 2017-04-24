@@ -47,7 +47,7 @@
 }
 </style>
 <h1>api documentation for
-    <a href="https://github.com/thejoshwolfe/yauzl">yauzl (v2.7.0)</a>
+    <a href="https://github.com/thejoshwolfe/yauzl">yauzl (v2.8.0)</a>
 </h1>
 <h4>yet another unzip library for node</h4>
 <div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
@@ -65,15 +65,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.Entry.prototype.getLastModDate">
-            function <span class="apidocSignatureSpan">yauzl.</span>Entry.prototype.getLastModDate
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader">
             function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader
             <span class="apidocSignatureSpan">()</span>
@@ -83,90 +74,9 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype._readStreamForRange">
-            function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype._readStreamForRange
-            <span class="apidocSignatureSpan">(start, end)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.close">
-            function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.close
-            <span class="apidocSignatureSpan">(callback)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.createReadStream">
-            function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.createReadStream
-            <span class="apidocSignatureSpan">(options)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.read">
-            function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.read
-            <span class="apidocSignatureSpan">(buffer, offset, length, position, callback)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.ref">
-            function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.ref
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.unref">
-            function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.unref
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile">
             function <span class="apidocSignatureSpan">yauzl.</span>ZipFile
-            <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.close">
-            function <span class="apidocSignatureSpan">yauzl.</span>ZipFile.prototype.close
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.openReadStream">
-            function <span class="apidocSignatureSpan">yauzl.</span>ZipFile.prototype.openReadStream
-            <span class="apidocSignatureSpan">(entry, callback)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.readEntry">
-            function <span class="apidocSignatureSpan">yauzl.</span>ZipFile.prototype.readEntry
-            <span class="apidocSignatureSpan">()</span>
+            <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes )</span>
             </a>
 
         </li>
@@ -269,14 +179,19 @@
 
         </li>
 
-    </ol></li>
+        <li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.Entry.prototype.getLastModDate">module yauzl.Entry.prototype.getLastModDate</a><ol>
+            <a class="apidocElementLiA" href="#apidoc.element.yauzl.Entry.prototype.isCompressed">
+            function <span class="apidocSignatureSpan">yauzl.Entry.prototype.</span>isCompressed
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.Entry.prototype.getLastModDate.getLastModDate">
-            function <span class="apidocSignatureSpan">yauzl.Entry.prototype.</span>getLastModDate
+            <a class="apidocElementLiA" href="#apidoc.element.yauzl.Entry.prototype.isEncrypted">
+            function <span class="apidocSignatureSpan">yauzl.Entry.prototype.</span>isEncrypted
             <span class="apidocSignatureSpan">()</span>
             </a>
 
@@ -364,91 +279,13 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.RandomAccessReader.prototype._readStreamForRange">module yauzl.RandomAccessReader.prototype._readStreamForRange</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype._readStreamForRange._readStreamForRange">
-            function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>_readStreamForRange
-            <span class="apidocSignatureSpan">(start, end)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.close">module yauzl.RandomAccessReader.prototype.close</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.close.close">
-            function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>close
-            <span class="apidocSignatureSpan">(callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.createReadStream">module yauzl.RandomAccessReader.prototype.createReadStream</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.createReadStream.createReadStream">
-            function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>createReadStream
-            <span class="apidocSignatureSpan">(options)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.read">module yauzl.RandomAccessReader.prototype.read</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.read.read">
-            function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>read
-            <span class="apidocSignatureSpan">(buffer, offset, length, position, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.ref">module yauzl.RandomAccessReader.prototype.ref</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.ref.ref">
-            function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>ref
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.unref">module yauzl.RandomAccessReader.prototype.unref</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.RandomAccessReader.prototype.unref.unref">
-            function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>unref
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
     <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.ZipFile">module yauzl.ZipFile</a><ol>
 
         <li>
 
             <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.ZipFile">
             function <span class="apidocSignatureSpan">yauzl.</span>ZipFile
-            <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings)</span>
+            <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes )</span>
             </a>
 
         </li>
@@ -479,7 +316,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.openReadStream">
             function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>openReadStream
-            <span class="apidocSignatureSpan">(entry, callback)</span>
+            <span class="apidocSignatureSpan">(entry, options, callback)</span>
             </a>
 
         </li>
@@ -489,123 +326,6 @@
             <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.readEntry">
             function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>readEntry
             <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.ZipFile.prototype.close">module yauzl.ZipFile.prototype.close</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.close.close">
-            function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>close
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.ZipFile.prototype.openReadStream">module yauzl.ZipFile.prototype.openReadStream</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.openReadStream.openReadStream">
-            function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>openReadStream
-            <span class="apidocSignatureSpan">(entry, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.ZipFile.prototype.readEntry">module yauzl.ZipFile.prototype.readEntry</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.ZipFile.prototype.readEntry.readEntry">
-            function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>readEntry
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.dosDateTimeToDate">module yauzl.dosDateTimeToDate</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.dosDateTimeToDate.dosDateTimeToDate">
-            function <span class="apidocSignatureSpan">yauzl.</span>dosDateTimeToDate
-            <span class="apidocSignatureSpan">(date, time)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.fromBuffer">module yauzl.fromBuffer</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.fromBuffer.fromBuffer">
-            function <span class="apidocSignatureSpan">yauzl.</span>fromBuffer
-            <span class="apidocSignatureSpan">(buffer, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.fromFd">module yauzl.fromFd</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.fromFd.fromFd">
-            function <span class="apidocSignatureSpan">yauzl.</span>fromFd
-            <span class="apidocSignatureSpan">(fd, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.fromRandomAccessReader">module yauzl.fromRandomAccessReader</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.fromRandomAccessReader.fromRandomAccessReader">
-            function <span class="apidocSignatureSpan">yauzl.</span>fromRandomAccessReader
-            <span class="apidocSignatureSpan">(reader, totalSize, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.open">module yauzl.open</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.open.open">
-            function <span class="apidocSignatureSpan">yauzl.</span>open
-            <span class="apidocSignatureSpan">(path, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.yauzl.validateFileName">module yauzl.validateFileName</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.yauzl.validateFileName.validateFileName">
-            function <span class="apidocSignatureSpan">yauzl.</span>validateFileName
-            <span class="apidocSignatureSpan">(fileName)</span>
             </a>
 
         </li>
@@ -633,21 +353,6 @@
 
 
     <h2>
-        <a href="#apidoc.element.yauzl.Entry.prototype.getLastModDate" id="apidoc.element.yauzl.Entry.prototype.getLastModDate">
-        function <span class="apidocSignatureSpan">yauzl.</span>Entry.prototype.getLastModDate
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">Entry.prototype.getLastModDate = function () {
-  return dosDateTimeToDate(this.lastModFileDate, this.lastModFileTime);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
         <a href="#apidoc.element.yauzl.RandomAccessReader" id="apidoc.element.yauzl.RandomAccessReader">
         function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader
         <span class="apidocSignatureSpan">()</span>
@@ -664,162 +369,13 @@
 
 
     <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype._readStreamForRange" id="apidoc.element.yauzl.RandomAccessReader.prototype._readStreamForRange">
-        function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype._readStreamForRange
-        <span class="apidocSignatureSpan">(start, end)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype._readStreamForRange = function (start, end) {
-  throw new Error("not implemented");
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.close" id="apidoc.element.yauzl.RandomAccessReader.prototype.close">
-        function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.close
-        <span class="apidocSignatureSpan">(callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype.close = function (callback) {
-  setImmediate(callback);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.createReadStream" id="apidoc.element.yauzl.RandomAccessReader.prototype.createReadStream">
-        function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.createReadStream
-        <span class="apidocSignatureSpan">(options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype.createReadStream = function (options) {
-  var start = options.start;
-  var end = options.end;
-  if (start === end) {
-    var emptyStream = new PassThrough();
-    setImmediate(function() {
-      emptyStream.end();
-    });
-    return emptyStream;
-  }
-  var stream = this._readStreamForRange(start, end);
-
-  var destroyed = false;
-  var refUnrefFilter = new RefUnrefFilter(this);
-  stream.on("error", function(err) {
-    setImmediate(function() {
-      if (!destroyed) refUnrefFilter.emit("error", err);
-    });
-  });
-  refUnrefFilter.destroy = function() {
-    stream.unpipe(refUnrefFilter);
-    refUnrefFilter.unref();
-    stream.destroy();
-  };
-
-  var byteCounter = new AssertByteCountStream(end - start);
-  refUnrefFilter.on("error", function(err) {
-    setImmediate(function() {
-      if (!destroyed) byteCounter.emit("error", err);
-    });
-  });
-  byteCounter.destroy = function() {
-    destroyed = true;
-    refUnrefFilter.unpipe(byteCounter);
-    refUnrefFilter.destroy();
-  };
-
-  return stream.pipe(refUnrefFilter).pipe(byteCounter);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.read" id="apidoc.element.yauzl.RandomAccessReader.prototype.read">
-        function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.read
-        <span class="apidocSignatureSpan">(buffer, offset, length, position, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype.read = function (buffer, offset, length, position, callback) {
-  var readStream = this.createReadStream({start: position, end: position + length});
-  var writeStream = new Writable();
-  var written = 0;
-  writeStream._write = function(chunk, encoding, cb) {
-    chunk.copy(buffer, offset + written, 0, chunk.length);
-    written += chunk.length;
-    cb();
-  };
-  writeStream.on("finish", callback);
-  readStream.on("error", function(error) {
-    callback(error);
-  });
-  readStream.pipe(writeStream);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.ref" id="apidoc.element.yauzl.RandomAccessReader.prototype.ref">
-        function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.ref
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype.ref = function () {
-  this.refCount += 1;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.unref" id="apidoc.element.yauzl.RandomAccessReader.prototype.unref">
-        function <span class="apidocSignatureSpan">yauzl.</span>RandomAccessReader.prototype.unref
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">RandomAccessReader.prototype.unref = function () {
-  var self = this;
-  self.refCount -= 1;
-
-  if (self.refCount &gt; 0) return;
-  if (self.refCount &lt; 0) throw new Error("invalid unref");
-
-  self.close(onCloseDone);
-
-  function onCloseDone(err) {
-    if (err) return self.emit('error', err);
-    self.emit('close');
-  }
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
         <a href="#apidoc.element.yauzl.ZipFile" id="apidoc.element.yauzl.ZipFile">
         function <span class="apidocSignatureSpan">yauzl.</span>ZipFile
-        <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings)</span>
+        <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes )</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">function ZipFile(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings) {
+    <li>description and source-code<pre class="apidocCodePre">function ZipFile(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes ) {
   var self = this;
   EventEmitter.call(self);
   self.reader = reader;
@@ -839,230 +395,12 @@
   self.autoClose = !!autoClose;
   self.lazyEntries = !!lazyEntries;
   self.decodeStrings = !!decodeStrings;
+  self.validateEntrySizes = !!validateEntrySizes;
   self.isOpen = true;
   self.emittedError = false;
 
   if (!self.lazyEntries) self.readEntry();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.ZipFile.prototype.close" id="apidoc.element.yauzl.ZipFile.prototype.close">
-        function <span class="apidocSignatureSpan">yauzl.</span>ZipFile.prototype.close
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">ZipFile.prototype.close = function () {
-  if (!this.isOpen) return;
-  this.isOpen = false;
-  this.reader.unref();
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.ZipFile.prototype.openReadStream" id="apidoc.element.yauzl.ZipFile.prototype.openReadStream">
-        function <span class="apidocSignatureSpan">yauzl.</span>ZipFile.prototype.openReadStream
-        <span class="apidocSignatureSpan">(entry, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">ZipFile.prototype.openReadStream = function (entry, callback) {
-  var self = this;
-  if (!self.isOpen) return callback(new Error("closed"));
-  // make sure we don't lose the fd before we open the actual read stream
-  self.reader.ref();
-  var buffer = new Buffer(30);
-  readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader, function(err) {
-    try {
-      if (err) return callback(err);
-      // 0 - Local file header signature = 0x04034b50
-      var signature = buffer.readUInt32LE(0);
-      if (signature !== 0x04034b50) {
-        return callback(new Error("invalid local file header signature: 0x" + signature.toString(16)));
-      }
-      // all this should be redundant
-      // 4 - Version needed to extract (minimum)
-      // 6 - General purpose bit flag
-      // 8 - Compression method
-      // 10 - File last modification time
-      // 12 - File last modification date
-      // 14 - CRC-32
-      // 18 - Compressed size
-      // 22 - Uncompressed size
-      // 26 - File name length (n)
-      var fileNameLength = buffer.readUInt16LE(26);
-      // 28 - Extra field length (m)
-      var extraFieldLength = buffer.readUInt16LE(28);
-      // 30 - File name
-      // 30+n - Extra field
-      var localFileHeaderEnd = entry.relativeOffsetOfLocalHeader + buffer.length + fileNameLength + extraFieldLength;
-      var compressed;
-      if (entry.compressionMethod === 0) {
-        // 0 - The file is stored (no compression)
-        compressed = false;
-      } else if (entry.compressionMethod === 8) {
-        // 8 - The file is Deflated
-        compressed = true;
-      } else {
-        return callback(new Error("unsupported compression method: " + entry.compressionMethod));
-      }
-      var fileDataStart = localFileHeaderEnd;
-      var fileDataEnd = fileDataStart + entry.compressedSize;
-      if (entry.compressedSize !== 0) {
-        // bounds check now, because the read streams will probably not complain loud enough.
-        // since we're dealing with an unsigned offset plus an unsigned size,
-        // we only have 1 thing to check for.
-        if (fileDataEnd &gt; self.fileSize) {
-          return callback(new Error("file data overflows file bounds: " +
-              fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
-        }
-      }
-      var readStream = self.reader.createReadStream({start: fileDataStart, end: fileDataEnd});
-      var endpointStream = readStream;
-      if (compressed) {
-        var destroyed = false;
-        var inflateFilter = zlib.createInflateRaw();
-        readStream.on("error", function(err) {
-          // setImmediate here because errors can be emitted during the first call to pipe()
-          setImmediate(function() {
-            if (!destroyed) inflateFilter.emit("error", err);
-          });
-        });
-
-        var checkerStream = new AssertByteCountStream(entry.uncompressedSize);
-        inflateFilter.on("error", function(err) {
-          // forward zlib errors to the client-visible stream
-          setImmediate(function() {
-            if (!destroyed) checkerStream.emit("error", err);
-          });
-        });
-        checkerStream.destroy = function() {
-          destroyed = true;
-          inflateFilter.unpipe(checkerStream);
-          readStream.unpipe(inflateFilter);
-          // TODO: the inflateFilter now causes a memory leak. see Issue #27.
-          readStream.destroy();
-        };
-        endpointStream = readStream.pipe(inflateFilter).pipe(checkerStream);
-      }
-      callback(null, endpointStream);
-    } finally {
-      self.reader.unref();
-    }
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.ZipFile.prototype.readEntry" id="apidoc.element.yauzl.ZipFile.prototype.readEntry">
-        function <span class="apidocSignatureSpan">yauzl.</span>ZipFile.prototype.readEntry
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">ZipFile.prototype.readEntry = function () {
-  var self = this;
-  if (self.entryCount === self.entriesRead) {
-    // done with metadata
-    setImmediate(function() {
-      if (self.autoClose) self.close();
-      if (self.emittedError) return;
-      self.emit("end");
-    });
-    return;
-  }
-  if (self.emittedError) return;
-  var buffer = new Buffer(46);
-  readAndAssertNoEof(self.reader, buffer, 0, buffer.length, self.readEntryCursor, function(err) {
-    if (err) return emitErrorAndAutoClose(self, err);
-    if (self.emittedError) return;
-    var entry = new Entry();
-    // 0 - Central directory file header signature
-    var signature = buffer.readUInt32LE(0);
-    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error("invalid central directory file header signature:
-0x" + signature.toString(16)));
-    // 4 - Version made by
-    entry.versionMadeBy = buffer.readUInt16LE(4);
-    // 6 - Version needed to extract (minimum)
-    entry.versionNeededToExtract = buffer.readUInt16LE(6);
-    // 8 - General purpose bit flag
-    entry.generalPurposeBitFlag = buffer.readUInt16LE(8);
-    // 10 - Compression method
-    entry.compressionMethod = buffer.readUInt16LE(10);
-    // 12 - File last modification time
-    entry.lastModFileTime = buffer.readUInt16LE(12);
-    // 14 - File last modification date
-    entry.lastModFileDate = buffer.readUInt16LE(14);
-    // 16 - CRC-32
-    entry.crc32 = buffer.readUInt32LE(16);
-    // 20 - Compressed size
-    entry.compressedSize = buffer.readUInt32LE(20);
-    // 24 - Uncompressed size
-    entry.uncompressedSize = buffer.readUInt32LE(24);
-    // 28 - File name length (n)
-    entry.fileNameLength = buffer.readUInt16LE(28);
-    // 30 - Extra field length (m)
-    entry.extraFieldLength = buffer.readUInt16LE(30);
-    // 32 - File comment length (k)
-    entry.fileCommentLength = buffer.readUInt16LE(32);
-    // 34 - Disk number where file starts
-    // 36 - Internal file attributes
-    entry.internalFileAttributes = buffer.readUInt16LE(36);
-    // 38 - External file attributes
-    entry.externalFileAttributes = buffer.readUInt32LE(38);
-    // 42 - Relative offset of local file header
-    entry.relativeOffsetOfLocalHeader = buffer.readUInt32LE(42);
-
-    self.readEntryCursor += 46;
-
-    buffer = new Buffer(entry.fileNameLength + entry.extraFieldLength + entry.fileCommentLength);
-    readAndAssertNoEof(self.reader, buffer, 0, buffer.length, self.readEntryCursor, function(err) {
-      if (err) return emitErrorAndAutoClose(self, err);
-      if (self.emittedError) return;
-      // 46 - File name
-      var isUtf8 = (entry.generalPurposeBitFlag &amp; 0x800) !== 0;
-      entry.fileName = self.decodeStrings ? decodeBuffer(buffer, 0, entry.fileNameLength, isUtf8)
-                                          : buffer.slice(0, entry.fileNameLength);
-
-      // 46+n - Extra field
-      var fileCommentStart = entry.fileNameLength + entry.extraFieldLength;
-      var extraFieldBuffer = buffer.slice(entry.fileNameLength, fileCommentStart);
-      entry.extraFields = [];
-      var i = 0;
-      while (i &lt; extraFieldBuffer.length - 3) {
-        var headerId = extraFieldBuffer.readUInt16LE(i + 0);
-        var dataSize = extraFieldBuffer.readUInt16LE(i + 2);
-        var dataStart = i + 4;
-        var dataEnd = dataStart + dataSize;
-        if (dataEnd &gt; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error("extra field length exceeds extra field
- buffer size"));
-        var dataBuffer = new Buffer(dataSize);
-        extraFieldBuffer.copy(dataBuffer, 0, dataStart, dataEnd);
-        entry.extraFields.push({
-          id: headerId,
-          data: dataBuffer,
-        });
-        i = dataEnd;
-      }
-
-      // 46+n+m - File comment
-      entry.fileComment = self.decodeStrings ? decodeBuffer(buffer, fileCommentStart, fileCommentStart + entry.fileCommentLength
-, isUtf8)
-                                             : buffer.slice(fileCommentStart, fileCommentStart + entry.fileCommentLength);
-      // compatibility hack for https://github.com/thejoshwolfe/yauzl/issues/47
-      entry.comment = entry.fileComment;
-
-      self.readEntryCursor += b ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1108,6 +446,7 @@
   options.autoClose = false;
   if (options.lazyEntries == null) options.lazyEntries = false;
   if (options.decodeStrings == null) options.decodeStrings = true;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
   // i got your open file right here.
   var reader = fd_slicer.createFromBuffer(buffer);
   fromRandomAccessReader(reader, buffer.length, options, callback);
@@ -1133,6 +472,7 @@
   if (options.autoClose == null) options.autoClose = false;
   if (options.lazyEntries == null) options.lazyEntries = false;
   if (options.decodeStrings == null) options.decodeStrings = true;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
   if (callback == null) callback = defaultCallback;
   fs.fstat(fd, function(err, stats) {
     if (err) return callback(err);
@@ -1162,6 +502,7 @@
   if (options.lazyEntries == null) options.lazyEntries = false;
   if (options.decodeStrings == null) options.decodeStrings = true;
   var decodeStrings = !!options.decodeStrings;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
   if (callback == null) callback = defaultCallback;
   if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
   if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
@@ -1182,7 +523,7 @@ comment.
   // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
  in the comment.
   var eocdrWithoutCommentSize = 22;
-  var maxCommentSize = 0x10000; // 2-byte size
+  var maxCommentSize = 0xffff; // 2-byte size
   var bufferSize = Math.min(eocdrWithoutCommentSize + maxCommentSize, totalSize);
   var buffer = new Buffer(bufferSize);
   var bufferReadStart = totalSize - buffer.length;
@@ -1219,7 +560,7 @@ comment.
 
       if (!(entryCount === 0xffff || centralDirectoryOffset === 0xffffffff)) {
         return callback(null, new ZipFile(reader, centralDirectoryOffset, totalSize, entryCount, comment, options.autoClose, options
-.lazyEntries, decodeStrings));
+.lazyEntries, decodeStrings, options.validateEntrySizes));
       }
 
       // ZIP64 format
@@ -1231,8 +572,7 @@ comment.
         if (err) return callback(err);
 
         // 0 - zip64 end of central dir locator signature = 0x07064b50
-        if (zip64EocdlBuffer.readUInt32LE(0) !== 0x07064b50) {
-          return callback(new Error("invalid zip64 end of central ...</pre></li>
+        if (zip64EocdlBuf ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1254,6 +594,7 @@ comment.
   if (options.autoClose == null) options.autoClose = true;
   if (options.lazyEntries == null) options.lazyEntries = false;
   if (options.decodeStrings == null) options.decodeStrings = true;
+  if (options.validateEntrySizes == null) options.validateEntrySizes = true;
   if (callback == null) callback = defaultCallback;
   fs.open(path, "r", function(err, fd) {
     if (err) return callback(err);
@@ -1264,21 +605,21 @@ comment.
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+ See `validateFileName()`.
+
+## Usage
 
 ```js
 var yauzl = require("yauzl");
-var fs = require("fs");
-var path = require("path");
-var mkdirp = require("mkdirp"); // or similar
 
 yauzl.<span class="apidocCodeKeywordSpan">open</span>("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
 if (err) throw err;
 zipfile.readEntry();
 zipfile.on("entry", function(entry) {
   if (/\/$/.test(entry.fileName)) {
-    // directory file names end with '/'
-    mkdirp(entry.fileName, function(err) {
-      if (err) throw err;
+    // Directory file names end with '/'.
+    // Note that entires for directories themselves are optional.
+    // An entry's fileName implicitly requires its parent directories to exist.
 ...</pre></li>
     </ul>
 
@@ -1369,23 +710,66 @@ See `open()` and `Event: "entry"` for more information.
     </ul>
 
 
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.Entry.prototype.getLastModDate" id="apidoc.module.yauzl.Entry.prototype.getLastModDate">module yauzl.Entry.prototype.getLastModDate</a></h1>
-
 
     <h2>
-        <a href="#apidoc.element.yauzl.Entry.prototype.getLastModDate.getLastModDate" id="apidoc.element.yauzl.Entry.prototype.getLastModDate.getLastModDate">
-        function <span class="apidocSignatureSpan">yauzl.Entry.prototype.</span>getLastModDate
+        <a href="#apidoc.element.yauzl.Entry.prototype.isCompressed" id="apidoc.element.yauzl.Entry.prototype.isCompressed">
+        function <span class="apidocSignatureSpan">yauzl.Entry.prototype.</span>isCompressed
         <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">getLastModDate = function () {
-  return dosDateTimeToDate(this.lastModFileDate, this.lastModFileTime);
+    <li>description and source-code<pre class="apidocCodePre">isCompressed = function () {
+  return this.compressionMethod === 8;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+`callback` gets `(err, readStream)`, where `readStream` is a `Readable Stream` that provides the file data for this entry.
+If this zipfile is already closed (see `close()`), the `callback` will receive an `err`.
+
+`options` may be omitted or `null`, and has the following defaults:
+
+```js
+{
+  decompress: entry.<span class="apidocCodeKeywordSpan">isCompressed</span>() ? true : null,
+  decrypt: null,
+  start: 0,                  // actually the default is null, see below
+  end: entry.compressedSize, // actually the default is null, see below
+}
+```
+
+If the entry is compressed (with a supported compression method),
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.yauzl.Entry.prototype.isEncrypted" id="apidoc.element.yauzl.Entry.prototype.isEncrypted">
+        function <span class="apidocSignatureSpan">yauzl.Entry.prototype.</span>isEncrypted
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isEncrypted = function () {
+  return (this.generalPurposeBitFlag &amp; 0x1) !== 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  }
+}
+
+// validate file size
+if (self.validateEntrySizes &amp;&amp; entry.compressionMethod === 0) {
+  var expectedCompressedSize = entry.uncompressedSize;
+  if (entry.<span class="apidocCodeKeywordSpan">isEncrypted</span>()) {
+    // traditional encryption prefixes the file data with a header
+    expectedCompressedSize += 12;
+  }
+  if (entry.compressedSize !== expectedCompressedSize) {
+    var msg = "compressed/uncompressed size mismatch for stored file: " + entry.compressedSize + " != " + entry
+.uncompressedSize;
+    return emitErrorAndAutoClose(self, new Error(msg));
+  }
+...</pre></li>
     </ul>
 
 
@@ -1474,7 +858,8 @@ and closes the fd after all streams created by `openReadStream()` have emitted t
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-`options` may be omitted or `null`. The defaults are `{autoClose: true, lazyEntries: false, decodeStrings: true}`.
+`options` may be omitted or `null`. The defaults are `{autoClose: true, lazyEntries: false, decodeStrings: true, validateEntrySizes
+: true}`.
 
 `autoClose` is effectively equivalent to:
 
@@ -1547,15 +932,14 @@ This is not recommended, as it can lead to out of control memory usage for zip f
         fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
   }
 }
-var readStream = self.reader.<span class="apidocCodeKeywordSpan">createReadStream</span>({start: fileDataStart, end: fileDataEnd
+var readStream = self.reader.<span class="apidocCodeKeywordSpan">createReadStream</span>({
+  start: fileDataStart + relativeStart,
+  end: fileDataStart + relativeEnd,
 });
 var endpointStream = readStream;
-if (compressed) {
+if (decompress) {
   var destroyed = false;
   var inflateFilter = zlib.createInflateRaw();
-  readStream.on("error", function(err) {
-    // setImmediate here because errors can be emitted during the first call to pipe()
-    setImmediate(function() {
 ...</pre></li>
     </ul>
 
@@ -1683,297 +1067,17 @@ function emitError(self, err) {
 </div>
 
 <div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.RandomAccessReader.prototype._readStreamForRange" id="apidoc.module.yauzl.RandomAccessReader.prototype._readStreamForRange">module yauzl.RandomAccessReader.prototype._readStreamForRange</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype._readStreamForRange._readStreamForRange" id="apidoc.element.yauzl.RandomAccessReader.prototype._readStreamForRange._readStreamForRange">
-        function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>_readStreamForRange
-        <span class="apidocSignatureSpan">(start, end)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">_readStreamForRange = function (start, end) {
-  throw new Error("not implemented");
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-Such heuristics are outside the scope of this library,
-but enforcing the `uncompressedSize` is implemented here as a security feature.
-
-It is possible to destroy the `readStream` before it has piped all of its data.
-To do this, call `readStream.destroy()`.
-You must `unpipe()` the `readStream` from any destination before calling `readStream.destroy()`.
-If this zipfile was created using `fromRandomAccessReader()`, the `RandomAccessReader` implementation
-must provide readable streams that implement a `.destroy()` method (see `randomAccessReader.<span class="apidocCodeKeywordSpan">
-_readStreamForRange</span>()`)
-in order for calls to `readStream.destroy()` to work in this context.
-
-#### close()
-
-Causes all future calls to `openReadStream()` to fail,
-and closes the fd after all streams created by `openReadStream()` have emitted their `end` events.
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.close" id="apidoc.module.yauzl.RandomAccessReader.prototype.close">module yauzl.RandomAccessReader.prototype.close</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.close.close" id="apidoc.element.yauzl.RandomAccessReader.prototype.close.close">
-        function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>close
-        <span class="apidocSignatureSpan">(callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">close = function (callback) {
-  setImmediate(callback);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-`options` may be omitted or `null`. The defaults are `{autoClose: true, lazyEntries: false, decodeStrings: true}`.
-
-`autoClose` is effectively equivalent to:
-
-```js
-zipfile.once("end", function() {
-  zipfile.<span class="apidocCodeKeywordSpan">close</span>();
-});
-```
-
-`lazyEntries` indicates that entries should be read only when `readEntry()` is called.
-If `lazyEntries` is `false`, `entry` events will be emitted as fast as possible to allow `pipe()`ing
-file data from all entries in parallel.
-This is not recommended, as it can lead to out of control memory usage for zip files with many entries.
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.createReadStream" id="apidoc.module.yauzl.RandomAccessReader.prototype.createReadStream">module yauzl.RandomAccessReader.prototype.createReadStream</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.createReadStream.createReadStream" id="apidoc.element.yauzl.RandomAccessReader.prototype.createReadStream.createReadStream">
-        function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>createReadStream
-        <span class="apidocSignatureSpan">(options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">createReadStream = function (options) {
-  var start = options.start;
-  var end = options.end;
-  if (start === end) {
-    var emptyStream = new PassThrough();
-    setImmediate(function() {
-      emptyStream.end();
-    });
-    return emptyStream;
-  }
-  var stream = this._readStreamForRange(start, end);
-
-  var destroyed = false;
-  var refUnrefFilter = new RefUnrefFilter(this);
-  stream.on("error", function(err) {
-    setImmediate(function() {
-      if (!destroyed) refUnrefFilter.emit("error", err);
-    });
-  });
-  refUnrefFilter.destroy = function() {
-    stream.unpipe(refUnrefFilter);
-    refUnrefFilter.unref();
-    stream.destroy();
-  };
-
-  var byteCounter = new AssertByteCountStream(end - start);
-  refUnrefFilter.on("error", function(err) {
-    setImmediate(function() {
-      if (!destroyed) byteCounter.emit("error", err);
-    });
-  });
-  byteCounter.destroy = function() {
-    destroyed = true;
-    refUnrefFilter.unpipe(byteCounter);
-    refUnrefFilter.destroy();
-  };
-
-  return stream.pipe(refUnrefFilter).pipe(byteCounter);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-  // since we're dealing with an unsigned offset plus an unsigned size,
-  // we only have 1 thing to check for.
-  if (fileDataEnd &gt; self.fileSize) {
-    return callback(new Error("file data overflows file bounds: " +
-        fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
-  }
-}
-var readStream = self.reader.<span class="apidocCodeKeywordSpan">createReadStream</span>({start: fileDataStart, end: fileDataEnd
-});
-var endpointStream = readStream;
-if (compressed) {
-  var destroyed = false;
-  var inflateFilter = zlib.createInflateRaw();
-  readStream.on("error", function(err) {
-    // setImmediate here because errors can be emitted during the first call to pipe()
-    setImmediate(function() {
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.read" id="apidoc.module.yauzl.RandomAccessReader.prototype.read">module yauzl.RandomAccessReader.prototype.read</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.read.read" id="apidoc.element.yauzl.RandomAccessReader.prototype.read.read">
-        function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>read
-        <span class="apidocSignatureSpan">(buffer, offset, length, position, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">read = function (buffer, offset, length, position, callback) {
-  var readStream = this.createReadStream({start: position, end: position + length});
-  var writeStream = new Writable();
-  var written = 0;
-  writeStream._write = function(chunk, encoding, cb) {
-    chunk.copy(buffer, offset + written, 0, chunk.length);
-    written += chunk.length;
-    cb();
-  };
-  writeStream.on("finish", callback);
-  readStream.on("error", function(error) {
-    callback(error);
-  });
-  readStream.pipe(writeStream);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-If you never call `readStream.destroy()`, then streams returned from this method do not need to implement a method `.destroy()`.
-`.destroy()` should abort any streaming that is in progress and clean up any associated resources.
-`.destroy()` will only be called after the stream has been `unpipe()`d from its destination.
-
-Note that the stream returned from this method might not be the same object that is provided by `openReadStream()`.
-The stream returned from this method might be `pipe()`d through one or more filter streams (for example, a zlib inflate stream).
-
-#### randomAccessReader.<span class="apidocCodeKeywordSpan">read</span>(buffer, offset, length, position, callback)
-
-Subclasses may implement this method.
-The default implementation uses `createReadStream()` to fill the `buffer`.
-
-This method should behave like `fs.read()`.
-
-#### randomAccessReader.close(callback)
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.ref" id="apidoc.module.yauzl.RandomAccessReader.prototype.ref">module yauzl.RandomAccessReader.prototype.ref</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.ref.ref" id="apidoc.element.yauzl.RandomAccessReader.prototype.ref.ref">
-        function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>ref
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">ref = function () {
-  this.refCount += 1;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-if (callback == null) callback = defaultCallback;
-if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
-if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
-  throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being
-an IEEE 754 double.");
-}
-
-// the matching unref() call is in zipfile.close()
-reader.<span class="apidocCodeKeywordSpan">ref</span>();
-
-// eocdr means End of Central Directory Record.
-// search backwards for the eocdr signature.
-// the last field of the eocdr is a variable-length comment.
-// the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment
- to find it.
-// as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the
- comment.
-// we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
- in the comment.
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.RandomAccessReader.prototype.unref" id="apidoc.module.yauzl.RandomAccessReader.prototype.unref">module yauzl.RandomAccessReader.prototype.unref</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.RandomAccessReader.prototype.unref.unref" id="apidoc.element.yauzl.RandomAccessReader.prototype.unref.unref">
-        function <span class="apidocSignatureSpan">yauzl.RandomAccessReader.prototype.</span>unref
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">unref = function () {
-  var self = this;
-  self.refCount -= 1;
-
-  if (self.refCount &gt; 0) return;
-  if (self.refCount &lt; 0) throw new Error("invalid unref");
-
-  self.close(onCloseDone);
-
-  function onCloseDone(err) {
-    if (err) return self.emit('error', err);
-    self.emit('close');
-  }
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-  self.emittedError = false;
-
-  if (!self.lazyEntries) self.readEntry();
-}
-ZipFile.prototype.close = function() {
-  if (!this.isOpen) return;
-  this.isOpen = false;
-  this.reader.<span class="apidocCodeKeywordSpan">unref</span>();
-};
-
-function emitErrorAndAutoClose(self, err) {
-  if (self.autoClose) self.close();
-  emitError(self, err);
-}
-function emitError(self, err) {
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.yauzl.ZipFile" id="apidoc.module.yauzl.ZipFile">module yauzl.ZipFile</a></h1>
 
 
     <h2>
         <a href="#apidoc.element.yauzl.ZipFile.ZipFile" id="apidoc.element.yauzl.ZipFile.ZipFile">
         function <span class="apidocSignatureSpan">yauzl.</span>ZipFile
-        <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings)</span>
+        <span class="apidocSignatureSpan">(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes )</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">function ZipFile(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings) {
+    <li>description and source-code<pre class="apidocCodePre">function ZipFile(reader, centralDirectoryOffset, fileSize, entryCount, comment, autoClose, lazyEntries, decodeStrings, validateEntrySizes ) {
   var self = this;
   EventEmitter.call(self);
   self.reader = reader;
@@ -1993,6 +1097,7 @@ function emitError(self, err) {
   self.autoClose = !!autoClose;
   self.lazyEntries = !!lazyEntries;
   self.decodeStrings = !!decodeStrings;
+  self.validateEntrySizes = !!validateEntrySizes;
   self.isOpen = true;
   self.emittedError = false;
 
@@ -2037,7 +1142,8 @@ function emitError(self, err) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-`options` may be omitted or `null`. The defaults are `{autoClose: true, lazyEntries: false, decodeStrings: true}`.
+`options` may be omitted or `null`. The defaults are `{autoClose: true, lazyEntries: false, decodeStrings: true, validateEntrySizes
+: true}`.
 
 `autoClose` is effectively equivalent to:
 
@@ -2059,13 +1165,64 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     <h2>
         <a href="#apidoc.element.yauzl.ZipFile.prototype.openReadStream" id="apidoc.element.yauzl.ZipFile.prototype.openReadStream">
         function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>openReadStream
-        <span class="apidocSignatureSpan">(entry, callback)</span>
+        <span class="apidocSignatureSpan">(entry, options, callback)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">openReadStream = function (entry, callback) {
+    <li>description and source-code<pre class="apidocCodePre">openReadStream = function (entry, options, callback) {
   var self = this;
+  // parameter validation
+  var relativeStart = 0;
+  var relativeEnd = entry.compressedSize;
+  if (callback == null) {
+    callback = options;
+    options = {};
+  } else {
+    // validate options that the caller has no excuse to get wrong
+    if (options.decrypt != null) {
+      if (!entry.isEncrypted()) {
+        throw new Error("options.decrypt can only be specified for encrypted entries");
+      }
+      if (options.decrypt !== false) throw new Error("invalid options.decrypt value: " + options.decrypt);
+      if (entry.isCompressed()) {
+        if (options.decompress !== false) throw new Error("entry is encrypted and compressed, and options.decompress !== false");
+      }
+    }
+    if (options.decompress != null) {
+      if (!entry.isCompressed()) {
+        throw new Error("options.decompress can only be specified for compressed entries");
+      }
+      if (!(options.decompress === false || options.decompress === true)) {
+        throw new Error("invalid options.decompress value: " + options.decompress);
+      }
+    }
+    if (options.start != null || options.end != null) {
+      if (entry.isCompressed() &amp;&amp; options.decompress !== false) {
+        throw new Error("start/end range not allowed for compressed entry without options.decompress === false");
+      }
+      if (entry.isEncrypted() &amp;&amp; options.decrypt !== false) {
+        throw new Error("start/end range not allowed for encrypted entry without options.decrypt === false");
+      }
+    }
+    if (options.start != null) {
+      relativeStart = options.start;
+      if (relativeStart &lt; 0) throw new Error("options.start &lt; 0");
+      if (relativeStart &gt; entry.compressedSize) throw new Error("options.start &gt; entry.compressedSize");
+    }
+    if (options.end != null) {
+      relativeEnd = options.end;
+      if (relativeEnd &lt; 0) throw new Error("options.end &lt; 0");
+      if (relativeEnd &gt; entry.compressedSize) throw new Error("options.end &gt; entry.compressedSize");
+      if (relativeEnd &lt; relativeStart) throw new Error("options.end &lt; options.start");
+    }
+  }
+  // any further errors can either be caused by the zipfile,
+  // or were introduced in a minor version of yauzl,
+  // so should be passed to the client rather than thrown.
   if (!self.isOpen) return callback(new Error("closed"));
+  if (entry.isEncrypted()) {
+    if (options.decrypt !== false) return callback(new Error("entry is encrypted, and options.decrypt !== false"));
+  }
   // make sure we don't lose the fd before we open the actual read stream
   self.reader.ref();
   var buffer = new Buffer(30);
@@ -2093,77 +1250,31 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       // 30 - File name
       // 30+n - Extra field
       var localFileHeaderEnd = entry.relativeOffsetOfLocalHeader + buffer.length + fileNameLength + extraFieldLength;
-      var compressed;
+      var decompress;
       if (entry.compressionMethod === 0) {
         // 0 - The file is stored (no compression)
-        compressed = false;
+        decompress = false;
       } else if (entry.compressionMethod === 8) {
         // 8 - The file is Deflated
-        compressed = true;
+        decompress = options.decompress != null ? options.decompress : true;
       } else {
-        return callback(new Error("unsupported compression method: " + entry.compressionMethod));
-      }
-      var fileDataStart = localFileHeaderEnd;
-      var fileDataEnd = fileDataStart + entry.compressedSize;
-      if (entry.compressedSize !== 0) {
-        // bounds check now, because the read streams will probably not complain loud enough.
-        // since we're dealing with an unsigned offset plus an unsigned size,
-        // we only have 1 thing to check for.
-        if (fileDataEnd &gt; self.fileSize) {
-          return callback(new Error("file data overflows file bounds: " +
-              fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
-        }
-      }
-      var readStream = self.reader.createReadStream({start: fileDataStart, end: fileDataEnd});
-      var endpointStream = readStream;
-      if (compressed) {
-        var destroyed = false;
-        var inflateFilter = zlib.createInflateRaw();
-        readStream.on("error", function(err) {
-          // setImmediate here because errors can be emitted during the first call to pipe()
-          setImmediate(function() {
-            if (!destroyed) inflateFilter.emit("error", err);
-          });
-        });
-
-        var checkerStream = new AssertByteCountStream(entry.uncompressedSize);
-        inflateFilter.on("error", function(err) {
-          // forward zlib errors to the client-visible stream
-          setImmediate(function() {
-            if (!destroyed) checkerStream.emit("error", err);
-          });
-        });
-        checkerStream.destroy = function() {
-          destroyed = true;
-          inflateFilter.unpipe(checkerStream);
-          readStream.unpipe(inflateFilter);
-          // TODO: the inflateFilter now causes a memory leak. see Issue #27.
-          readStream.destroy();
-        };
-        endpointStream = readStream.pipe(inflateFilter).pipe(checkerStream);
-      }
-      callback(null, endpointStream);
-    } finally {
-      self.reader.unref();
-    }
-  });
-}</pre></li>
+        return callback(new Error("unsupported compression method: " + entry.compressionMeth ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  // directory file names end with '/'
-  mkdirp(entry.fileName, function(err) {
-    if (err) throw err;
-    zipfile.readEntry();
-  });
+  zipfile.on("entry", function(entry) {
+if (/\/$/.test(entry.fileName)) {
+  // Directory file names end with '/'.
+  // Note that entires for directories themselves are optional.
+  // An entry's fileName implicitly requires its parent directories to exist.
 } else {
   // file entry
   zipfile.<span class="apidocCodeKeywordSpan">openReadStream</span>(entry, function(err, readStream) {
     if (err) throw err;
-    // ensure parent directory exists
-    mkdirp(path.dirname(entry.fileName), function(err) {
-      if (err) throw err;
-      readStream.pipe(fs.createWriteStream(entry.fileName));
-      readStream.on("end", function() {
-        zipfile.readEntry();
+    readStream.on("end", function() {
+      zipfile.readEntry();
+    });
+    readStream.pipe(somewhere);
+  });
+}
 ...</pre></li>
     </ul>
 
@@ -2229,287 +1340,7 @@ This is not recommended, as it can lead to out of control memory usage for zip f
     // 42 - Relative offset of local file header
     entry.relativeOffsetOfLocalHeader = buffer.readUInt32LE(42);
 
-    self.readEntryCursor += 46;
-
-    buffer = new Buffer(entry.fileNameLength + entry.extraFieldLength + entry.fileCommentLength);
-    readAndAssertNoEof(self.reader, buffer, 0, buffer.length, self.readEntryCursor, function(err) {
-      if (err) return emitErrorAndAutoClose(self, err);
-      if (self.emittedError) return;
-      // 46 - File name
-      var isUtf8 = (entry.generalPurposeBitFlag &amp; 0x800) !== 0;
-      entry.fileName = self.decodeStrings ? decodeBuffer(buffer, 0, entry.fileNameLength, isUtf8)
-                                          : buffer.slice(0, entry.fileNameLength);
-
-      // 46+n - Extra field
-      var fileCommentStart = entry.fileNameLength + entry.extraFieldLength;
-      var extraFieldBuffer = buffer.slice(entry.fileNameLength, fileCommentStart);
-      entry.extraFields = [];
-      var i = 0;
-      while (i &lt; extraFieldBuffer.length - 3) {
-        var headerId = extraFieldBuffer.readUInt16LE(i + 0);
-        var dataSize = extraFieldBuffer.readUInt16LE(i + 2);
-        var dataStart = i + 4;
-        var dataEnd = dataStart + dataSize;
-        if (dataEnd &gt; extraFieldBuffer.length) return emitErrorAndAutoClose(self, new Error("extra field length exceeds extra field
- buffer size"));
-        var dataBuffer = new Buffer(dataSize);
-        extraFieldBuffer.copy(dataBuffer, 0, dataStart, dataEnd);
-        entry.extraFields.push({
-          id: headerId,
-          data: dataBuffer,
-        });
-        i = dataEnd;
-      }
-
-      // 46+n+m - File comment
-      entry.fileComment = self.decodeStrings ? decodeBuffer(buffer, fileCommentStart, fileCommentStart + entry.fileCommentLength
-, isUtf8)
-                                             : buffer.slice(fileCommentStart, fileCommentStart + entry.fileCommentLength);
-      // compatibility hack for https://github.com/thejoshwolfe/yauzl/issues/47
-      entry.comment = entry.fileComment;
-
-      self.readEntryCursor += b ...</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-var yauzl = require("yauzl");
-var fs = require("fs");
-var path = require("path");
-var mkdirp = require("mkdirp"); // or similar
-
-yauzl.open("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
-if (err) throw err;
-zipfile.<span class="apidocCodeKeywordSpan">readEntry</span>();
-zipfile.on("entry", function(entry) {
-  if (/\/$/.test(entry.fileName)) {
-    // directory file names end with '/'
-    mkdirp(entry.fileName, function(err) {
-      if (err) throw err;
-      zipfile.readEntry();
-    });
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.ZipFile.prototype.close" id="apidoc.module.yauzl.ZipFile.prototype.close">module yauzl.ZipFile.prototype.close</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.ZipFile.prototype.close.close" id="apidoc.element.yauzl.ZipFile.prototype.close.close">
-        function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>close
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">close = function () {
-  if (!this.isOpen) return;
-  this.isOpen = false;
-  this.reader.unref();
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-`options` may be omitted or `null`. The defaults are `{autoClose: true, lazyEntries: false, decodeStrings: true}`.
-
-`autoClose` is effectively equivalent to:
-
-```js
-zipfile.once("end", function() {
-  zipfile.<span class="apidocCodeKeywordSpan">close</span>();
-});
-```
-
-`lazyEntries` indicates that entries should be read only when `readEntry()` is called.
-If `lazyEntries` is `false`, `entry` events will be emitted as fast as possible to allow `pipe()`ing
-file data from all entries in parallel.
-This is not recommended, as it can lead to out of control memory usage for zip files with many entries.
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.ZipFile.prototype.openReadStream" id="apidoc.module.yauzl.ZipFile.prototype.openReadStream">module yauzl.ZipFile.prototype.openReadStream</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.ZipFile.prototype.openReadStream.openReadStream" id="apidoc.element.yauzl.ZipFile.prototype.openReadStream.openReadStream">
-        function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>openReadStream
-        <span class="apidocSignatureSpan">(entry, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">openReadStream = function (entry, callback) {
-  var self = this;
-  if (!self.isOpen) return callback(new Error("closed"));
-  // make sure we don't lose the fd before we open the actual read stream
-  self.reader.ref();
-  var buffer = new Buffer(30);
-  readAndAssertNoEof(self.reader, buffer, 0, buffer.length, entry.relativeOffsetOfLocalHeader, function(err) {
-    try {
-      if (err) return callback(err);
-      // 0 - Local file header signature = 0x04034b50
-      var signature = buffer.readUInt32LE(0);
-      if (signature !== 0x04034b50) {
-        return callback(new Error("invalid local file header signature: 0x" + signature.toString(16)));
-      }
-      // all this should be redundant
-      // 4 - Version needed to extract (minimum)
-      // 6 - General purpose bit flag
-      // 8 - Compression method
-      // 10 - File last modification time
-      // 12 - File last modification date
-      // 14 - CRC-32
-      // 18 - Compressed size
-      // 22 - Uncompressed size
-      // 26 - File name length (n)
-      var fileNameLength = buffer.readUInt16LE(26);
-      // 28 - Extra field length (m)
-      var extraFieldLength = buffer.readUInt16LE(28);
-      // 30 - File name
-      // 30+n - Extra field
-      var localFileHeaderEnd = entry.relativeOffsetOfLocalHeader + buffer.length + fileNameLength + extraFieldLength;
-      var compressed;
-      if (entry.compressionMethod === 0) {
-        // 0 - The file is stored (no compression)
-        compressed = false;
-      } else if (entry.compressionMethod === 8) {
-        // 8 - The file is Deflated
-        compressed = true;
-      } else {
-        return callback(new Error("unsupported compression method: " + entry.compressionMethod));
-      }
-      var fileDataStart = localFileHeaderEnd;
-      var fileDataEnd = fileDataStart + entry.compressedSize;
-      if (entry.compressedSize !== 0) {
-        // bounds check now, because the read streams will probably not complain loud enough.
-        // since we're dealing with an unsigned offset plus an unsigned size,
-        // we only have 1 thing to check for.
-        if (fileDataEnd &gt; self.fileSize) {
-          return callback(new Error("file data overflows file bounds: " +
-              fileDataStart + " + " + entry.compressedSize + " &gt; " + self.fileSize));
-        }
-      }
-      var readStream = self.reader.createReadStream({start: fileDataStart, end: fileDataEnd});
-      var endpointStream = readStream;
-      if (compressed) {
-        var destroyed = false;
-        var inflateFilter = zlib.createInflateRaw();
-        readStream.on("error", function(err) {
-          // setImmediate here because errors can be emitted during the first call to pipe()
-          setImmediate(function() {
-            if (!destroyed) inflateFilter.emit("error", err);
-          });
-        });
-
-        var checkerStream = new AssertByteCountStream(entry.uncompressedSize);
-        inflateFilter.on("error", function(err) {
-          // forward zlib errors to the client-visible stream
-          setImmediate(function() {
-            if (!destroyed) checkerStream.emit("error", err);
-          });
-        });
-        checkerStream.destroy = function() {
-          destroyed = true;
-          inflateFilter.unpipe(checkerStream);
-          readStream.unpipe(inflateFilter);
-          // TODO: the inflateFilter now causes a memory leak. see Issue #27.
-          readStream.destroy();
-        };
-        endpointStream = readStream.pipe(inflateFilter).pipe(checkerStream);
-      }
-      callback(null, endpointStream);
-    } finally {
-      self.reader.unref();
-    }
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-  // directory file names end with '/'
-  mkdirp(entry.fileName, function(err) {
-    if (err) throw err;
-    zipfile.readEntry();
-  });
-} else {
-  // file entry
-  zipfile.<span class="apidocCodeKeywordSpan">openReadStream</span>(entry, function(err, readStream) {
-    if (err) throw err;
-    // ensure parent directory exists
-    mkdirp(path.dirname(entry.fileName), function(err) {
-      if (err) throw err;
-      readStream.pipe(fs.createWriteStream(entry.fileName));
-      readStream.on("end", function() {
-        zipfile.readEntry();
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.ZipFile.prototype.readEntry" id="apidoc.module.yauzl.ZipFile.prototype.readEntry">module yauzl.ZipFile.prototype.readEntry</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.ZipFile.prototype.readEntry.readEntry" id="apidoc.element.yauzl.ZipFile.prototype.readEntry.readEntry">
-        function <span class="apidocSignatureSpan">yauzl.ZipFile.prototype.</span>readEntry
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">readEntry = function () {
-  var self = this;
-  if (self.entryCount === self.entriesRead) {
-    // done with metadata
-    setImmediate(function() {
-      if (self.autoClose) self.close();
-      if (self.emittedError) return;
-      self.emit("end");
-    });
-    return;
-  }
-  if (self.emittedError) return;
-  var buffer = new Buffer(46);
-  readAndAssertNoEof(self.reader, buffer, 0, buffer.length, self.readEntryCursor, function(err) {
-    if (err) return emitErrorAndAutoClose(self, err);
-    if (self.emittedError) return;
-    var entry = new Entry();
-    // 0 - Central directory file header signature
-    var signature = buffer.readUInt32LE(0);
-    if (signature !== 0x02014b50) return emitErrorAndAutoClose(self, new Error("invalid central directory file header signature:
-0x" + signature.toString(16)));
-    // 4 - Version made by
-    entry.versionMadeBy = buffer.readUInt16LE(4);
-    // 6 - Version needed to extract (minimum)
-    entry.versionNeededToExtract = buffer.readUInt16LE(6);
-    // 8 - General purpose bit flag
-    entry.generalPurposeBitFlag = buffer.readUInt16LE(8);
-    // 10 - Compression method
-    entry.compressionMethod = buffer.readUInt16LE(10);
-    // 12 - File last modification time
-    entry.lastModFileTime = buffer.readUInt16LE(12);
-    // 14 - File last modification date
-    entry.lastModFileDate = buffer.readUInt16LE(14);
-    // 16 - CRC-32
-    entry.crc32 = buffer.readUInt32LE(16);
-    // 20 - Compressed size
-    entry.compressedSize = buffer.readUInt32LE(20);
-    // 24 - Uncompressed size
-    entry.uncompressedSize = buffer.readUInt32LE(24);
-    // 28 - File name length (n)
-    entry.fileNameLength = buffer.readUInt16LE(28);
-    // 30 - Extra field length (m)
-    entry.extraFieldLength = buffer.readUInt16LE(30);
-    // 32 - File comment length (k)
-    entry.fileCommentLength = buffer.readUInt16LE(32);
-    // 34 - Disk number where file starts
-    // 36 - Internal file attributes
-    entry.internalFileAttributes = buffer.readUInt16LE(36);
-    // 38 - External file attributes
-    entry.externalFileAttributes = buffer.readUInt32LE(38);
-    // 42 - Relative offset of local file header
-    entry.relativeOffsetOfLocalHeader = buffer.readUInt32LE(42);
+    if (entry.generalPurposeBitFlag &amp; 0x40) return emitErrorAndAutoClose(self, new Error("strong encryption is not supported"));
 
     self.readEntryCursor += 46;
 
@@ -2547,313 +1378,23 @@ This is not recommended, as it can lead to out of control memory usage for zip f
       entry.fileComment = self.decodeStrings ? decodeBuffer(buffer, fileCommentStart, fileCommentStart + entry.fileCommentLength
 , isUtf8)
                                              : buffer.slice(fileCommentStart, fileCommentStart + entry.fileCommentLength);
-      // compatibility hack for https://github.com/thejoshwolfe/yauzl/issues/47
-      entry.comment = entry.fileComment;
-
-      self.readEntryCursor += b ...</pre></li>
+      // compatibility ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+## Usage
+
+```js
 var yauzl = require("yauzl");
-var fs = require("fs");
-var path = require("path");
-var mkdirp = require("mkdirp"); // or similar
 
 yauzl.open("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
 if (err) throw err;
 zipfile.<span class="apidocCodeKeywordSpan">readEntry</span>();
 zipfile.on("entry", function(entry) {
   if (/\/$/.test(entry.fileName)) {
-    // directory file names end with '/'
-    mkdirp(entry.fileName, function(err) {
-      if (err) throw err;
-      zipfile.readEntry();
-    });
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.dosDateTimeToDate" id="apidoc.module.yauzl.dosDateTimeToDate">module yauzl.dosDateTimeToDate</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.dosDateTimeToDate.dosDateTimeToDate" id="apidoc.element.yauzl.dosDateTimeToDate.dosDateTimeToDate">
-        function <span class="apidocSignatureSpan">yauzl.</span>dosDateTimeToDate
-        <span class="apidocSignatureSpan">(date, time)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function dosDateTimeToDate(date, time) {
-  var day = date &amp; 0x1f; // 1-31
-  var month = (date &gt;&gt; 5 &amp; 0xf) - 1; // 1-12, 0-11
-  var year = (date &gt;&gt; 9 &amp; 0x7f) + 1980; // 0-128, 1980-2108
-
-  var millisecond = 0;
-  var second = (time &amp; 0x1f) * 2; // 0-29, 0-58 (even numbers)
-  var minute = time &gt;&gt; 5 &amp; 0x3f; // 0-59
-  var hour = time &gt;&gt; 11 &amp; 0x1f; // 0-23
-
-  return new Date(year, month, day, hour, minute, second, millisecond);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.fromBuffer" id="apidoc.module.yauzl.fromBuffer">module yauzl.fromBuffer</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.fromBuffer.fromBuffer" id="apidoc.element.yauzl.fromBuffer.fromBuffer">
-        function <span class="apidocSignatureSpan">yauzl.</span>fromBuffer
-        <span class="apidocSignatureSpan">(buffer, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function fromBuffer(buffer, options, callback) {
-  if (typeof options === "function") {
-    callback = options;
-    options = null;
-  }
-  if (options == null) options = {};
-  options.autoClose = false;
-  if (options.lazyEntries == null) options.lazyEntries = false;
-  if (options.decodeStrings == null) options.decodeStrings = true;
-  // i got your open file right here.
-  var reader = fd_slicer.createFromBuffer(buffer);
-  fromRandomAccessReader(reader, buffer.length, options, callback);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.fromFd" id="apidoc.module.yauzl.fromFd">module yauzl.fromFd</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.fromFd.fromFd" id="apidoc.element.yauzl.fromFd.fromFd">
-        function <span class="apidocSignatureSpan">yauzl.</span>fromFd
-        <span class="apidocSignatureSpan">(fd, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function fromFd(fd, options, callback) {
-  if (typeof options === "function") {
-    callback = options;
-    options = null;
-  }
-  if (options == null) options = {};
-  if (options.autoClose == null) options.autoClose = false;
-  if (options.lazyEntries == null) options.lazyEntries = false;
-  if (options.decodeStrings == null) options.decodeStrings = true;
-  if (callback == null) callback = defaultCallback;
-  fs.fstat(fd, function(err, stats) {
-    if (err) return callback(err);
-    var reader = fd_slicer.createFromFd(fd, {autoClose: true});
-    fromRandomAccessReader(reader, stats.size, options, callback);
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.fromRandomAccessReader" id="apidoc.module.yauzl.fromRandomAccessReader">module yauzl.fromRandomAccessReader</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.fromRandomAccessReader.fromRandomAccessReader" id="apidoc.element.yauzl.fromRandomAccessReader.fromRandomAccessReader">
-        function <span class="apidocSignatureSpan">yauzl.</span>fromRandomAccessReader
-        <span class="apidocSignatureSpan">(reader, totalSize, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function fromRandomAccessReader(reader, totalSize, options, callback) {
-  if (typeof options === "function") {
-    callback = options;
-    options = null;
-  }
-  if (options == null) options = {};
-  if (options.autoClose == null) options.autoClose = true;
-  if (options.lazyEntries == null) options.lazyEntries = false;
-  if (options.decodeStrings == null) options.decodeStrings = true;
-  var decodeStrings = !!options.decodeStrings;
-  if (callback == null) callback = defaultCallback;
-  if (typeof totalSize !== "number") throw new Error("expected totalSize parameter to be a number");
-  if (totalSize &gt; Number.MAX_SAFE_INTEGER) {
-    throw new Error("zip file too large. only file sizes up to 2^52 are supported due to JavaScript's Number type being an IEEE
-754 double.");
-  }
-
-  // the matching unref() call is in zipfile.close()
-  reader.ref();
-
-  // eocdr means End of Central Directory Record.
-  // search backwards for the eocdr signature.
-  // the last field of the eocdr is a variable-length comment.
-  // the comment size is encoded in a 2-byte field in the eocdr, which we can't find without trudging backwards through the comment
- to find it.
-  // as a consequence of this design decision, it's possible to have ambiguous zip file metadata if a coherent eocdr was in the
-comment.
-  // we search backwards for a eocdr signature, and hope that whoever made the zip file was smart enough to forbid the eocdr signature
- in the comment.
-  var eocdrWithoutCommentSize = 22;
-  var maxCommentSize = 0x10000; // 2-byte size
-  var bufferSize = Math.min(eocdrWithoutCommentSize + maxCommentSize, totalSize);
-  var buffer = new Buffer(bufferSize);
-  var bufferReadStart = totalSize - buffer.length;
-  readAndAssertNoEof(reader, buffer, 0, bufferSize, bufferReadStart, function(err) {
-    if (err) return callback(err);
-    for (var i = bufferSize - eocdrWithoutCommentSize; i &gt;= 0; i -= 1) {
-      if (buffer.readUInt32LE(i) !== 0x06054b50) continue;
-      // found eocdr
-      var eocdrBuffer = buffer.slice(i);
-
-      // 0 - End of central directory signature = 0x06054b50
-      // 4 - Number of this disk
-      var diskNumber = eocdrBuffer.readUInt16LE(4);
-      if (diskNumber !== 0) {
-        return callback(new Error("multi-disk zip files are not supported: found disk number: " + diskNumber));
-      }
-      // 6 - Disk where central directory starts
-      // 8 - Number of central directory records on this disk
-      // 10 - Total number of central directory records
-      var entryCount = eocdrBuffer.readUInt16LE(10);
-      // 12 - Size of central directory (bytes)
-      // 16 - Offset of start of central directory, relative to start of archive
-      var centralDirectoryOffset = eocdrBuffer.readUInt32LE(16);
-      // 20 - Comment length
-      var commentLength = eocdrBuffer.readUInt16LE(20);
-      var expectedCommentLength = eocdrBuffer.length - eocdrWithoutCommentSize;
-      if (commentLength !== expectedCommentLength) {
-        return callback(new Error("invalid comment length. expected: " + expectedCommentLength + ". found: " + commentLength));
-      }
-      // 22 - Comment
-      // the encoding is always cp437.
-      var comment = decodeStrings ? decodeBuffer(eocdrBuffer, 22, eocdrBuffer.length, false)
-                                  : eocdrBuffer.slice(22);
-
-      if (!(entryCount === 0xffff || centralDirectoryOffset === 0xffffffff)) {
-        return callback(null, new ZipFile(reader, centralDirectoryOffset, totalSize, entryCount, comment, options.autoClose, options
-.lazyEntries, decodeStrings));
-      }
-
-      // ZIP64 format
-
-      // ZIP64 Zip64 end of central directory locator
-      var zip64EocdlBuffer = new Buffer(20);
-      var zip64EocdlOffset = bufferReadStart + i - zip64EocdlBuffer.length;
-      readAndAssertNoEof(reader, zip64EocdlBuffer, 0, zip64EocdlBuffer.length, zip64EocdlOffset, function(err) {
-        if (err) return callback(err);
-
-        // 0 - zip64 end of central dir locator signature = 0x07064b50
-        if (zip64EocdlBuffer.readUInt32LE(0) !== 0x07064b50) {
-          return callback(new Error("invalid zip64 end of central ...</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.open" id="apidoc.module.yauzl.open">module yauzl.open</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.open.open" id="apidoc.element.yauzl.open.open">
-        function <span class="apidocSignatureSpan">yauzl.</span>open
-        <span class="apidocSignatureSpan">(path, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function open(path, options, callback) {
-  if (typeof options === "function") {
-    callback = options;
-    options = null;
-  }
-  if (options == null) options = {};
-  if (options.autoClose == null) options.autoClose = true;
-  if (options.lazyEntries == null) options.lazyEntries = false;
-  if (options.decodeStrings == null) options.decodeStrings = true;
-  if (callback == null) callback = defaultCallback;
-  fs.open(path, "r", function(err, fd) {
-    if (err) return callback(err);
-    fromFd(fd, options, function(err, zipfile) {
-      if (err) fs.close(fd, defaultCallback);
-      callback(err, zipfile);
-    });
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-```js
-var yauzl = require("yauzl");
-var fs = require("fs");
-var path = require("path");
-var mkdirp = require("mkdirp"); // or similar
-
-yauzl.<span class="apidocCodeKeywordSpan">open</span>("path/to/file.zip", {lazyEntries: true}, function(err, zipfile) {
-if (err) throw err;
-zipfile.readEntry();
-zipfile.on("entry", function(entry) {
-  if (/\/$/.test(entry.fileName)) {
-    // directory file names end with '/'
-    mkdirp(entry.fileName, function(err) {
-      if (err) throw err;
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.yauzl.validateFileName" id="apidoc.module.yauzl.validateFileName">module yauzl.validateFileName</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.yauzl.validateFileName.validateFileName" id="apidoc.element.yauzl.validateFileName.validateFileName">
-        function <span class="apidocSignatureSpan">yauzl.</span>validateFileName
-        <span class="apidocSignatureSpan">(fileName)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function validateFileName(fileName) {
-  if (fileName.indexOf("\\") !== -1) {
-    return "invalid characters in fileName: " + fileName;
-  }
-  if (/^[a-zA-Z]:/.test(fileName) || /^\//.test(fileName)) {
-    return "absolute path: " + fileName;
-  }
-  if (fileName.split("/").indexOf("..") !== -1) {
-    return "invalid relative path: " + fileName;
-  }
-  // all good
-  return null;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-### validateFileName(fileName)
-
-Returns `null` or a `String` error message depending on the validity of `fileName`.
-If `fileName` starts with `"/"` or `/[A-Za-z]:\//` or if it contains `".."` path segments or `"\\"`,
-this function returns an error message appropriate for use like this:
-
-```js
-var errorMessage = yauzl.<span class="apidocCodeKeywordSpan">validateFileName</span>(fileName);
-if (errorMessage != null) throw new Error(errorMessage);
-```
-
-This function is automatically run for each entry, as long as `decodeStrings` is `true`.
-See `open()` and `Event: "entry"` for more information.
-
-### Class: ZipFile
+    // Directory file names end with '/'.
+    // Note that entires for directories themselves are optional.
+    // An entry's fileName implicitly requires its parent directories to exist.
+  } else {
+    // file entry
 ...</pre></li>
     </ul>
 
